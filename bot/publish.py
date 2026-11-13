@@ -7,6 +7,7 @@
 
 from __future__ import annotations
 
+import hashlib
 import json
 import os
 import sys
@@ -294,9 +295,11 @@ def main() -> None:
         for v in load_retire_verdicts(set(r_by_id), served):
             if not v["relevant"]:
                 continue
-            key = (f"{v['model_name'].strip().lower()}|{v.get('shutdown_date', '')}|{v['where']}", "retire")
+            # state 는 공개 저장소에 올라가므로 우리 서비스 모델을 알 수 있는 이름 대신 해시로 기록한다
+            raw = f"{v['model_name'].strip().lower()}|{v.get('shutdown_date', '')}|{v['where']}"
+            key = (hashlib.sha256(raw.encode()).hexdigest()[:16], "retire")
             if key in posted_keys:
-                print(f"이미 보낸 종료 공지라 건너뜀: {key[0]}")
+                print("이미 보낸 종료 공지라 건너뜀")
                 continue
             post_slack(format_retirement(v, r_by_id[v["id"]]))
             state["posted"].append({"model_key": key[0], "source": key[1], "at": now})
