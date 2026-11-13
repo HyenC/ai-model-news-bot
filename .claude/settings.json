@@ -1,0 +1,10 @@
+{
+  "permissions": {
+    "deny": [
+      "mcp__2__generate_image", "mcp__2__generate_video", "mcp__2__upload_file",
+      "mcp__2__import_media_url", "mcp__2__create_upload_url", "mcp__2__open_upload_widget",
+      "mcp__claude_ai_2__generate_image", "mcp__claude_ai_2__generate_video", "mcp__claude_ai_2__upload_file",
+      "mcp__claude_ai_2__import_media_url", "mcp__claude_ai_2__create_upload_url", "mcp__claude_ai_2__open_upload_widget"
+    ]
+  }
+}

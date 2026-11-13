@@ -16,10 +16,11 @@ from email.utils import parsedate_to_datetime
 import requests
 
 from common import (
-    CANDIDATES_PATH, CATALOG_PATH, CATALOG_STATUS_PATH, PENDING_PATH, VERDICTS_PATH,
+    CANDIDATES_PATH, CATALOG_PATH, CATALOG_STATUS_PATH, PENDING_PATH, RETIRE_VERDICTS_PATH,
+    RETIREMENTS_PATH, SERVED_PATH, VERDICTS_PATH,
     load_state, save_state,
 )
-from sources import PLATFORMS
+from sources import PLATFORMS, RETIRE_SOURCES
 
 POSTED_KEEP_DAYS = 30
 MODALITIES = {"이미지", "영상", "오디오", "멀티모달", "해당 없음"}
@@ -162,6 +163,71 @@ def format_message(group: list[dict], catalog_ok: dict[str, bool]) -> str:
     return "\n\n".join(blocks)
 
 
+def load_served() -> set[str] | None:
+    """우리 서비스 모델의 표시 이름 목록. 없으면 None (커넥터를 못 읽은 회차)."""
+    if not SERVED_PATH.exists():
+        return None
+    try:
+        data = json.loads(SERVED_PATH.read_text())
+    except ValueError:
+        return None
+    names = {str(m.get("displayName", "")).strip() for m in data if isinstance(m, dict)}
+    names.discard("")
+    return names or None
+
+
+def load_retire_verdicts(ids: set[str], served: set[str]) -> list[dict]:
+    data = json.loads(RETIRE_VERDICTS_PATH.read_text()) if RETIRE_VERDICTS_PATH.exists() else {"items": []}
+    items, errors, got = data.get("items", []), [], set()
+    for v in items:
+        vid = v.get("id")
+        got.add(vid)
+        if vid not in ids:
+            errors.append(f"종료 공지 후보에 없는 id: {vid}")
+        if not isinstance(v.get("relevant"), bool):
+            errors.append(f"relevant 가 true/false 가 아님: {vid}")
+        if v.get("relevant"):
+            for f in ("model_name", "maker", "where", "summary"):
+                if not str(v.get(f, "")).strip():
+                    errors.append(f"{f} 가 비어 있음: {vid}")
+            sm = v.get("served_models")
+            if not isinstance(sm, list) or not sm:
+                errors.append(f"served_models 는 1개 이상인 목록이어야 함: {vid}")
+            else:
+                for name in sm:
+                    if name not in served:
+                        errors.append(f"served_models 의 '{name}' 이 out/served_models.json 의 displayName 에 없음: {vid}")
+            sd = str(v.get("shutdown_date", "")).strip()
+            if sd:
+                try:
+                    datetime.strptime(sd, "%Y-%m-%d")
+                except ValueError:
+                    errors.append(f"shutdown_date 는 YYYY-MM-DD 이거나 빈 문자열: {vid} -> {sd}")
+    missing = ids - got
+    if missing:
+        errors.append(f"판단이 빠진 종료 공지 후보 {len(missing)}개: {sorted(missing)[:5]}")
+    if errors:
+        print("retire_verdicts.json 형식 오류, 전송하지 않음:\n- " + "\n- ".join(errors), file=sys.stderr)
+        sys.exit(1)
+    return items
+
+
+def format_retirement(v: dict, c: dict) -> str:
+    sd = str(v.get("shutdown_date", "")).strip()
+    head = f"*[제공 종료 예정] {v['model_name']}* · {v['maker']}\n{v['where']}"
+    if sd:
+        d = datetime.strptime(sd, "%Y-%m-%d").date()
+        left = (d - datetime.now(KST).date()).days
+        when = f"{left}일 남음" if left > 0 else ("오늘" if left == 0 else "이미 지남")
+        head += f"\n종료일: {d:%Y-%m-%d}({WEEKDAYS[d.weekday()]}) · {when}"
+    blocks = [head, v["summary"]]
+    if str(v.get("replacement", "")).strip():
+        blocks.append(f"*대체 모델*\n{v['replacement']}")
+    blocks.append("*우리 서비스 모델*\n" + "\n".join(f"• {x}" for x in v["served_models"]))
+    blocks.append(f"*출처*\n<{c['url']}|{c['source_label']}>")
+    return "\n\n".join(blocks)
+
+
 def post_slack(text: str) -> None:
     if DRY_RUN:
         print("----- [DRY_RUN] 슬랙 메시지 -----\n" + text + "\n")
@@ -212,6 +278,33 @@ def main() -> None:
             if not DRY_RUN:
                 save_state(state)  # 중간에 실패해도 이미 보낸 건 다시 보내지 않도록
     print(f"후보 {len(candidates)}개 중 {sent}건 전송")
+
+    # 제공 종료 공지: 우리 서비스 모델 목록이 있어야 판단할 수 있다.
+    retirements = json.loads(RETIREMENTS_PATH.read_text()) if RETIREMENTS_PATH.exists() else []
+    served = load_served()
+    if retirements and served is None:
+        print(f"[경고] out/served_models.json 이 없어 종료 공지 {len(retirements)}개를 다음 회차로 미룸")
+        for name in RETIRE_SOURCES:
+            pending.pop(name, None)  # 본 것으로 기록하지 않아서 다음 회차에 다시 판단한다
+    elif retirements:
+        r_by_id = {c["id"]: c for c in retirements}
+        r_sent = 0
+        posted_keys = {(p["model_key"], p["source"]) for p in state["posted"]}
+        now = datetime.now(timezone.utc).isoformat()
+        for v in load_retire_verdicts(set(r_by_id), served):
+            if not v["relevant"]:
+                continue
+            key = (f"{v['model_name'].strip().lower()}|{v.get('shutdown_date', '')}|{v['where']}", "retire")
+            if key in posted_keys:
+                print(f"이미 보낸 종료 공지라 건너뜀: {key[0]}")
+                continue
+            post_slack(format_retirement(v, r_by_id[v["id"]]))
+            state["posted"].append({"model_key": key[0], "source": key[1], "at": now})
+            posted_keys.add(key)
+            r_sent += 1
+            if not DRY_RUN:
+                save_state(state)
+        print(f"종료 공지 후보 {len(retirements)}개 중 {r_sent}건 전송")
 
     # 전송까지 끝난 뒤에만 '본 항목'으로 기록한다. 중간에 실패하면 다음 회차에 다시 시도된다.
     for name, ids in pending.items():

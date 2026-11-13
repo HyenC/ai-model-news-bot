@@ -11,6 +11,9 @@ PENDING_PATH = OUT_DIR / "pending_seen.json"
 VERDICTS_PATH = OUT_DIR / "verdicts.json"
 CATALOG_PATH = OUT_DIR / "catalog.tsv"          # 플랫폼별 전체 모델 목록 (사용 가능 여부 확인용)
 CATALOG_STATUS_PATH = OUT_DIR / "catalog_status.json"  # 플랫폼별 목록을 읽었는지
+RETIREMENTS_PATH = OUT_DIR / "retirements.json"          # 제공 종료 공지 후보
+RETIRE_VERDICTS_PATH = OUT_DIR / "retire_verdicts.json"  # 제공 종료 공지 판단 결과
+SERVED_PATH = OUT_DIR / "served_models.json"             # 우리가 서비스하는 모델 목록 (드롭샷 커넥터에서)
 
 
 def load_state() -> dict:

@@ -6,6 +6,7 @@ item_id 는 소스 안에서 고유한 값이고, 이미 본 항목인지 판단
 
 from __future__ import annotations
 
+import hashlib
 import html as html_lib
 import re
 import time
@@ -68,6 +69,24 @@ BLOG_PAGES = {
     "Suno": ("https://suno.com/blog", "/blog/"),
 }
 
+# 모델 제공 종료(deprecation)를 미리 공지하는 페이지.
+# mode "table": 종료 일정표 페이지라 날짜가 들어간 행·문단을 모두 본다.
+# mode "keyword": 변경 기록 페이지라 종료 관련 단어가 들어간 문단만 본다.
+DEPRECATION_PAGES = {
+    "Runware 변경 기록": ("https://runware.ai/docs/changelog", "keyword"),
+    "Gemini API 종료 일정": ("https://aistudio.google.com/docs/deprecations.md", "table"),
+    "OpenAI 종료 일정": ("https://developers.openai.com/api/docs/deprecations.md", "table"),
+    "ElevenLabs 변경 기록": ("https://elevenlabs.io/docs/changelog", "keyword"),
+    "MiniMax 모델 공지": ("https://platform.minimax.io/docs/release-notes/models", "keyword"),
+    "Luma 변경 기록": ("https://docs.lumalabs.ai/changelog", "keyword"),
+    "xAI 모델 문서": ("https://docs.x.ai/developers/models", "keyword"),
+    "Replicate 변경 기록": ("https://replicate.com/changelog", "keyword"),
+}
+DEPRECATION_WORDS = re.compile(
+    r"deprecat|retir|shut ?down|sunset|discontinu|end[- ]of[- ]life|will be removed"
+    r"|no longer (be )?(available|supported)", re.I)
+YEAR = re.compile(r"\b20[2-3]\d\b")
+
 
 def _get_json(url: str, params: dict | None = None, tries: int = 6) -> dict | list:
     """429(요청 제한)이면 retry-after 만큼 기다렸다가 다시 시도한다."""
@@ -82,9 +101,13 @@ def _get_json(url: str, params: dict | None = None, tries: int = 6) -> dict | li
     raise RuntimeError(f"요청 제한이 풀리지 않음: {url}")
 
 
+_FAL_RETIRING: list[dict] | None = None  # fetch_fal 이 채우고 fetch_fal_retiring 이 쓴다
+
+
 def fetch_fal() -> list[tuple[str, str, dict]]:
     """fal.ai 전체 모델 목록. 날짜순 정렬이 안 돼서 전부 넘겨 보고 새 ID 를 찾는다."""
-    out, cursor = [], None
+    global _FAL_RETIRING
+    out, cursor, retiring = [], None, []
     while True:
         params = {"limit": 100}
         if cursor:
@@ -94,6 +117,11 @@ def fetch_fal() -> list[tuple[str, str, dict]]:
             md = m.get("metadata") or {}
             if md.get("category") not in FAL_CATEGORIES:
                 continue
+            if m.get("retires_at"):
+                retiring.append({
+                    "endpoint": m["endpoint_id"], "title": md.get("display_name"),
+                    "retires_at": m["retires_at"], "replacement": m.get("replacement"),
+                })
             out.append(("fal", m["endpoint_id"], {
                 "source_label": "fal.ai",
                 "title": md.get("display_name"),
@@ -103,6 +131,7 @@ def fetch_fal() -> list[tuple[str, str, dict]]:
                 "url": f"https://fal.ai/models/{m['endpoint_id']}",
             }))
         if not d.get("has_more"):
+            _FAL_RETIRING = retiring
             return out
         cursor = d["next_cursor"]
         time.sleep(6)  # 익명 요청은 분당 약 10회로 제한된다
@@ -278,12 +307,105 @@ def fetch_blogs() -> list[tuple[str, str, dict]]:
     return out
 
 
+def fetch_fal_retiring() -> list[tuple[str, str, dict]]:
+    """fal.ai 목록에서 종료 예정일(retires_at)이 잡힌 모델. fetch_fal 이 먼저 성공해야 한다."""
+    if _FAL_RETIRING is None:
+        raise RuntimeError("fal.ai 목록을 못 읽어서 종료 예정 모델도 확인 못 함")
+    now = datetime.now(timezone.utc)
+    out = []
+    for m in _FAL_RETIRING:
+        when = datetime.fromisoformat(m["retires_at"].replace("Z", "+00:00"))
+        if when < now:
+            continue
+        out.append(("fal_retire", f"{m['endpoint']}@{m['retires_at'][:10]}", {
+            "source_label": "fal.ai 종료 예정",
+            "title": f"{m['title']} ({m['endpoint']})",
+            "text": f"fal.ai 의 {m['endpoint']} 엔드포인트가 {m['retires_at'][:10]} 에 종료 예정. "
+                    f"대체 엔드포인트: {m['replacement'] or '없음'}",
+            "context": "",
+            "url": f"https://fal.ai/models/{m['endpoint']}",
+        }))
+    return out
+
+
+def _text_blocks(body: str, markdown: bool) -> list[tuple[str, str]]:
+    """페이지를 문단·표의 행 단위로 나눈다. (문단, 바로 앞 제목 또는 문단) 목록."""
+    if markdown:
+        lines, blocks, cur, heading = body.splitlines(), [], [], ""
+        def flush():
+            if cur:
+                blocks.append((" | ".join(cur), heading))
+                cur.clear()
+        for raw in lines:
+            line = raw.strip()
+            if line.startswith("#"):
+                flush()
+                heading = line.lstrip("# ").split("{%")[0].strip()
+            elif not line or line == "---" or line.startswith("{%") or set(line) <= set("|-: "):
+                flush()
+            elif line.startswith("|"):
+                flush()
+                cur.append(" | ".join(c.strip() for c in line.strip("|").split("|")))
+                flush()
+            else:
+                cur.append(line.lstrip("*- ").strip())
+        flush()
+    else:
+        t = re.sub(r"(?is)<(script|style|svg|noscript|head|nav|footer)\b.*?</\1>", " ", body)
+        t = re.sub(r"(?i)</?(p|li|tr|h[1-6]|br|div|section|article|table|ul|ol|dt|dd|summary|details)\b[^>]*>",
+                   "\n", t)
+        t = re.sub(r"(?i)</t[dh]>", " | ", t)
+        t = html_lib.unescape(re.sub(r"<[^>]+>", " ", t))
+        blocks, prev = [], ""
+        for line in t.split("\n"):
+            line = re.sub(r"\s+", " ", line).strip(" |")
+            if 15 <= len(line) <= 1500:
+                blocks.append((line, prev))
+                prev = line
+    return [(re.sub(r"\s+", " ", b).strip(), c) for b, c in blocks if 15 <= len(b) <= 1500]
+
+
+def fetch_deprecations() -> list[tuple[str, str, dict]]:
+    """제공 종료 공지 페이지의 관련 문단. 문단 내용이 바뀌면(종료일이 정해지는 등) 새 항목으로 잡힌다."""
+    out = []
+    for label, (url, mode) in DEPRECATION_PAGES.items():
+        try:
+            r = requests.get(url, headers={"User-Agent": "Mozilla/5.0 (Macintosh)"}, timeout=40)
+            r.raise_for_status()
+        except requests.RequestException as e:
+            print(f"[경고] 종료 공지 페이지 실패: {label} ({type(e).__name__})")
+            continue
+        markdown = "markdown" in r.headers.get("content-type", "") or url.endswith(".md")
+        seen_here = set()
+        for text, context in _text_blocks(r.text, markdown):
+            if mode == "table":
+                if not YEAR.search(text) or text.lower().startswith("last updated"):
+                    continue
+            elif not DEPRECATION_WORDS.search(text):
+                continue
+            h = hashlib.sha1(text.encode()).hexdigest()[:16]
+            if h in seen_here:
+                continue
+            seen_here.add(h)
+            out.append(("deprecation", f"{label}#{h}", {
+                "source_label": label,
+                "title": f"{label}: {text[:60]}",
+                "text": text,
+                "context": context[:300],
+                "url": url.removesuffix(".md"),
+            }))
+    return out
+
+
 # 목록에 설명이 없는 소스는 새 항목에 한해 모델 페이지 설명을 붙인다
 NEEDS_DESCRIPTION = {"replicate", "runware", "blog"}
 
 SOURCES = {
     "fal": fetch_fal, "replicate": fetch_replicate, "runware": fetch_runware,
     "hf": fetch_hf, "rss": fetch_rss, "blog": fetch_blogs,
+    "fal_retire": fetch_fal_retiring, "deprecation": fetch_deprecations,
 }
+# 제공 종료 공지 소스. 새 모델 후보와 따로 판단한다(out/retirements.json).
+RETIRE_SOURCES = {"fal_retire", "deprecation"}
 # 알림마다 '여기서 쓸 수 있는지'를 표시할 플랫폼
 PLATFORMS = {"replicate": "Replicate", "runware": "Runware", "fal": "fal.ai"}

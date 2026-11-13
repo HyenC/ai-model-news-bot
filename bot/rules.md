@@ -51,3 +51,42 @@
    "platforms": {"replicate": "", "runware": "", "fal": ""}}
 ]}
 ```
+
+---
+
+# 제공 종료 공지 판단 기준
+
+`out/retirements.json` 의 각 항목은 모델 제공 종료(deprecation)와 관련 있을 수 있는 공지 문단입니다.
+우리 서비스 모델 목록 `out/served_models.json` 과 대조해서 `out/retire_verdicts.json` 을 만드세요.
+근거는 항목의 text, context(바로 앞 제목이나 문단), source_label 과 served_models.json 뿐입니다. 웹 검색은 하지 마세요.
+
+## relevant=true 로 볼 것
+- 우리가 서비스하는 모델(served_models.json 의 같은 모델·같은 버전)의 제공 종료, 종료 예정, 종료일 확정·변경 공지
+- 표의 한 행이면 종료일(Shutdown date 등)이 정해져 있거나 "deprecated" 로 표시된 경우만. "No shutdown date announced" 처럼 종료 계획이 없으면 false
+
+## relevant=false 로 볼 것
+- 우리가 서비스하지 않는 모델, 이름만 비슷한 다른 버전(예: 우리는 Kling 2.6 인데 공지는 Kling 2.1)
+- 모델이 아니라 API 파라미터, SDK, 기능, 요금제 등의 종료
+- 이미 종료일이 지난 오래된 공지
+
+## relevant=true 인 항목에 채울 내용 (한국어)
+- served_models: 해당하는 우리 서비스 모델의 displayName 목록. served_models.json 의 displayName 을 그대로 복사하세요
+- model_name: 공지에 나온 모델 이름
+- maker: 모델을 만든 곳
+- where: 어디서 종료되는지 한 줄. 예: "Runware에서 제공 종료 예정", "fal.ai에서 제공 종료 예정", "OpenAI API에서 종료 예정", "Gemini API에서 종료 예정"
+- shutdown_date: 종료일 "YYYY-MM-DD". 공지에 없으면 빈 문자열
+- replacement: 공지에 나온 대체 모델. 없으면 빈 문자열
+- summary: 공지 내용 한두 문장. 종료 뒤에 어떻게 되는지(요청 실패, 자동 전환 등)가 나와 있으면 포함
+
+## out/retire_verdicts.json 형식
+후보 하나당 항목 하나. relevant=false 면 나머지 필드는 빈 값.
+```json
+{"items": [
+  {"id": "deprecation:OpenAI 종료 일정#0123abcd", "relevant": true,
+   "served_models": ["GPT Image 2.0"], "model_name": "gpt-image-2", "maker": "OpenAI",
+   "where": "OpenAI API에서 종료 예정", "shutdown_date": "2027-03-01",
+   "replacement": "gpt-image-2.6-flare", "summary": "gpt-image-2 가 2027-03-01 에 종료되며, 그 뒤 요청은 실패합니다."},
+  {"id": "fal_retire:fal-ai/glm-image@2026-12-10", "relevant": false, "served_models": [], "model_name": "",
+   "maker": "", "where": "", "shutdown_date": "", "replacement": "", "summary": ""}
+]}
+```
