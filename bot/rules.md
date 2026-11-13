@@ -7,7 +7,7 @@
 - 새로 공개되거나 새 버전이 나온 이미지·영상·오디오(음성, 음악, 효과음) 생성·편집 모델
 - 기존 모델이 새 플랫폼(fal.ai 등)에 처음 API 로 올라온 경우
 - 원래 모델을 만든 곳이 직접 낸 공식 경량화·고속 버전 (예: Turbo, Lite, Flash, Fast, Highspeed, Distilled, 공식 FP8 등). 성능은 비슷하면서 더 빠르거나 싸게 쓸 수 있어서 중요합니다
-- 위 모델의 공개 발표 글
+- 위 모델의 공개 발표 글. 아직 쓸 수 없는 출시 예정 발표(공개 예고, 대기 명단, 프리뷰 신청, "곧 출시" 등)도 포함하고 upcoming=true 로 표시
 
 ## relevant=false 로 볼 것
 - LLM, 음성 인식, 비전 이해, 3D 전용 모델
@@ -22,21 +22,32 @@
 - 소문자, 버전 포함, 만든 곳 이름은 빼세요(예: "seedream-5.5", "veo-4").
 
 ## relevant=true 인 항목에 채울 내용 (한국어)
-근거는 후보에 주어진 정보뿐입니다. 모르는 것은 지어내지 말고 "확인 안 됨"이라고 쓰세요. 웹 검색으로 정보를 보태지 마세요.
+근거는 후보에 주어진 정보와 `out/catalog.tsv` 뿐입니다. 모르는 것은 지어내지 말고 아예 쓰지 마세요("확인 안 됨" 같은 문구도 쓰지 마세요). 웹 검색으로 정보를 보태지 마세요.
 - model_name: 모델 이름과 버전
 - maker: 만든 곳
 - modality: "이미지", "영상", "오디오", "멀티모달" 중 하나
-- summary_ko: 무엇을 할 수 있는지, 이전 버전이나 다른 모델과 비교해 무엇이 새로운지 2~3문장. 경량화·고속 버전이면 원래 모델 대비 속도·가격·품질 차이를 정보에 있는 만큼 쓰세요
-- availability: 지금 어디서 쓸 수 있는지 (예: "fal.ai API", "Hugging Face 오픈 가중치(라이선스: apache-2.0)", "발표만, 공개 일정 확인 안 됨")
+- one_liner: 이 모델이 무엇인지 한 문장 (40자 안팎)
+- features: 이 모델의 특징 2~4개. 한 항목에 한 가지 사실만, 짧게(25자 안팎). 할 수 있는 작업, 입력·출력 조건(참조 이미지 수, 해상도, 길이, 오디오 동시 생성 등), 새 기능 위주
+- vs_previous: 이전 버전이나 원래 모델과 비교해 달라진 점 한두 문장. 경량화·고속 버전이면 속도·가격·품질 차이. 후보 정보에 비교 근거가 없으면 빈 문자열로 두세요("확인 안 됨"이라고 쓰지 마세요). 메시지에서 이 항목이 빠집니다
+- upcoming: 아직 쓸 수 없고 출시 예정만 발표된 경우 true, 지금 쓸 수 있으면 false
+- other_availability: Replicate·Runware·fal.ai 말고 쓸 수 있는 곳 (예: "Hugging Face 오픈 가중치(라이선스: apache-2.0)", "Google Gemini API"). 없거나 모르면 빈 문자열
+- platforms: Replicate·Runware·fal.ai 에 이 모델이 있는지. `out/catalog.tsv` 에서 모델 이름으로 찾아(예: `grep -i seedream out/catalog.tsv`), 같은 모델·같은 버전이 있으면 그 행의 url 을, 없으면 빈 문자열을 넣습니다. 비슷한 이전 버전(예: 5.5 를 찾는데 5.0 만 있음)은 없는 것으로 봅니다. url 은 catalog 에 있는 값을 그대로 복사하세요
 
 ## out/verdicts.json 형식
-후보 하나당 항목 하나. relevant=false 면 나머지 필드는 빈 문자열, modality 는 "해당 없음".
+후보 하나당 항목 하나. relevant=false 면 문자열 필드는 빈 문자열, features 는 빈 목록, upcoming 은 false, platforms 는 세 값 모두 빈 문자열, modality 는 "해당 없음".
 ```json
 {"items": [
   {"id": "fal:bytedance/seedream/v5.5/text-to-image", "relevant": true,
    "model_key": "seedream-5.5", "model_name": "Seedream 5.5", "maker": "ByteDance",
-   "modality": "이미지", "summary_ko": "...", "availability": "fal.ai API"},
-  {"id": "rss:https://...", "relevant": false, "model_key": "", "model_name": "",
-   "maker": "", "modality": "해당 없음", "summary_ko": "", "availability": ""}
+   "modality": "이미지",
+   "one_liner": "ByteDance의 이미지 생성·편집 모델 새 버전",
+   "features": ["텍스트→이미지, 이미지 편집", "참조 이미지 최대 10장", "투명 배경 PNG 출력", "레이어 분리(Layerize)"],
+   "vs_previous": "",
+   "upcoming": false,
+   "other_availability": "",
+   "platforms": {"replicate": "", "runware": "https://runware.ai/models/bytedance-seedream-5-5", "fal": "https://fal.ai/models/bytedance/seedream/v5.5/text-to-image"}},
+  {"id": "rss:https://...", "relevant": false, "model_key": "", "model_name": "", "maker": "",
+   "modality": "해당 없음", "one_liner": "", "features": [], "vs_previous": "", "upcoming": false, "other_availability": "",
+   "platforms": {"replicate": "", "runware": "", "fal": ""}}
 ]}
 ```
