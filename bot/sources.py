@@ -59,7 +59,7 @@ RSS_FEEDS = {
 # (이름: (페이지 주소, 글 주소에 들어가는 경로))
 BLOG_PAGES = {
     "Black Forest Labs (FLUX)": ("https://bfl.ai/blog", "/blog/"),
-    "Runway": ("https://runwayml.com/news", "/news/"),
+    "Runway 뉴스": ("https://runway.com/news", "/news/"),
     "Luma AI": ("https://lumalabs.ai/news", "/news/"),
     "MiniMax": ("https://www.minimax.io/news", "/news/"),
     "Meta AI": ("https://ai.meta.com/blog/", "/blog/"),
