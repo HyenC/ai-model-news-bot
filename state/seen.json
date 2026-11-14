@@ -1338,6 +1338,7 @@
    "https://elevenlabs.io/blog/mckinsey",
    "https://elevenlabs.io/blog/nvidia",
    "https://elevenlabs.io/blog/nyc-summit",
+   "https://elevenlabs.io/blog/open-source-tts-vs-paid-apis",
    "https://elevenlabs.io/blog/partner-program",
    "https://elevenlabs.io/blog/scribe-v3",
    "https://elevenlabs.io/blog/sfx-v3-for-developers",
@@ -2279,6 +2280,7 @@
    "https://lumalabs.ai/news/ai-lip-sync",
    "https://lumalabs.ai/news/ai-logo-prompts",
    "https://lumalabs.ai/news/ai-lyric-video-makers-independent-artists",
+   "https://lumalabs.ai/news/ai-mockup-generators-product-packaging-shots",
    "https://lumalabs.ai/news/ai-motion-graphics-tools-brand-teams",
    "https://lumalabs.ai/news/ai-movie-generators",
    "https://lumalabs.ai/news/ai-music-video-generators-musicians-labels",
@@ -2314,6 +2316,7 @@
    "https://lumalabs.ai/news/ai-tools-filmmakers",
    "https://lumalabs.ai/news/ai-trailer-generators-games-films",
    "https://lumalabs.ai/news/ai-ugc-video-generators-dtc-brands",
+   "https://lumalabs.ai/news/ai-vfx-tools-filmmakers-editors",
    "https://lumalabs.ai/news/ai-video-editors",
    "https://lumalabs.ai/news/ai-video-generation-apis-enterprise-developers",
    "https://lumalabs.ai/news/ai-video-generation-statistics",
@@ -3077,6 +3080,7 @@
    "Replicate 변경 기록#e1f715e3e5e7dcb8",
    "Replicate 변경 기록#e29b754e0cd361e4",
    "Replicate 변경 기록#f07d37d23e820e8c",
+   "Runware 변경 기록#0a3904a43f693dd4",
    "Runware 변경 기록#0ee9079b3d93c848",
    "Runware 변경 기록#1122915d9c5a820b",
    "Runware 변경 기록#182491f60fe608aa",
@@ -3090,8 +3094,10 @@
    "Runware 변경 기록#383750b9f748ceb9",
    "Runware 변경 기록#3a90112e2790104c",
    "Runware 변경 기록#45fe25be152007c7",
+   "Runware 변경 기록#48502aedd160cb5b",
    "Runware 변경 기록#49a09663cc030051",
    "Runware 변경 기록#4e3dd0a7132949d5",
+   "Runware 변경 기록#4fc6785fc1653e6b",
    "Runware 변경 기록#537228fc60fdcd71",
    "Runware 변경 기록#5b209cb26acbafbf",
    "Runware 변경 기록#5fbd054c8b1f9263",
@@ -3112,11 +3118,13 @@
    "Runware 변경 기록#8ca99ff16ab89502",
    "Runware 변경 기록#91b703856e090971",
    "Runware 변경 기록#93ca025b6ab95974",
+   "Runware 변경 기록#97f0d036d453aef0",
    "Runware 변경 기록#9be9f3584e9dc6fe",
    "Runware 변경 기록#9d0ea2f3912b742d",
    "Runware 변경 기록#9f68373acee58939",
    "Runware 변경 기록#a49bad7bf759a828",
    "Runware 변경 기록#a73b527f85af075e",
+   "Runware 변경 기록#a8bbf07339eba54d",
    "Runware 변경 기록#a91f8be7c639f0f4",
    "Runware 변경 기록#adedc29e4a0efae4",
    "Runware 변경 기록#b06adfbf14374a67",
@@ -3131,6 +3139,7 @@
    "Runware 변경 기록#e77629bcbe3bffb5",
    "Runware 변경 기록#eb58c59aac44c8e9",
    "Runware 변경 기록#f3c9bdb7f3e78b12",
+   "Runware 변경 기록#f76e06acca9afb4d",
    "xAI 모델 문서#6fb29bd61a88342c",
    "xAI 모델 문서#be30dee67152cfbd"
   ]
@@ -3150,6 +3159,11 @@
    "model_key": "flux-3",
    "source": "blog",
    "at": "2026-11-13T06:03:14.837432+00:00"
+  },
+  {
+   "model_key": "abb65b5089f31ec4",
+   "source": "retire",
+   "at": "2026-11-14T00:10:23.712483+00:00"
   }
  ],
  "seeded_labels": [
