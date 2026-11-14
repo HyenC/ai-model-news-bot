@@ -110,6 +110,8 @@
    "bytedance/seedream/v5/pro/edit",
    "bytedance/seedream/v5/pro/layerize",
    "bytedance/seedream/v5/pro/text-to-image",
+   "bytedance/seedream/v5/pro/us/edit",
+   "bytedance/seedream/v5/pro/us/text-to-image",
    "cassetteai/music-generator",
    "cassetteai/sound-effects-generator",
    "cassetteai/video-sound-effects-generator",
