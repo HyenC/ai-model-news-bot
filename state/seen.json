@@ -1255,7 +1255,9 @@
    "chatrlabs/Qwen-Image-2.1-Uncensored-Omni-Quantized",
    "empero-ai/PiVo-1.4M",
    "localai0301/Anima-RGBA",
-   "maya-research/maya2-native"
+   "maya-research/maya2-native",
+   "mehdi-hf/chatterbox-farsi",
+   "vyrekai/minimax-h3-image-comfyui-workflows"
   ],
   "rss": [
    "https://blog.fal.ai/building-long-term-trust-in-a-world-where-creation-moves-at-the-speed-of-thought/",
