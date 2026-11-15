@@ -1257,6 +1257,8 @@
    "localai0301/Anima-RGBA",
    "maya-research/maya2-native",
    "mehdi-hf/chatterbox-farsi",
+   "owensong/Inflect-Mini-v3",
+   "unsloth/MiniMax-H3-Image-FP8",
    "vyrekai/minimax-h3-image-comfyui-workflows"
   ],
   "rss": [
@@ -1959,6 +1961,7 @@
    "bytedance-seedance-2-0-fast",
    "bytedance-seedance-2-0-mini",
    "bytedance-seedance-2-5",
+   "bytedance-seedance-2-5-flash",
    "bytedance-seedream-4-0",
    "bytedance-seedream-4-5",
    "bytedance-seedream-5-0-flash",
@@ -3175,6 +3178,11 @@
    "model_key": "abb65b5089f31ec4",
    "source": "retire",
    "at": "2026-11-14T00:10:23.712483+00:00"
+  },
+  {
+   "model_key": "seedance-2.5-flash",
+   "source": "runware",
+   "at": "2026-11-15T06:11:55.342415+00:00"
   }
  ],
  "seeded_labels": [
