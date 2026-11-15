@@ -1260,6 +1260,7 @@
    "localai0301/Anima-RGBA",
    "maya-research/maya2-native",
    "mehdi-hf/chatterbox-farsi",
+   "n4ze3m/tiny-voca",
    "owensong/Inflect-Mini-v3",
    "unsloth/MiniMax-H3-Image-FP8",
    "vyrekai/minimax-h3-image-comfyui-workflows"
@@ -3191,6 +3192,11 @@
    "model_key": "seedance-2.5-flash",
    "source": "fal",
    "at": "2026-11-15T07:09:47.179377+00:00"
+  },
+  {
+   "model_key": "tiny-voca",
+   "source": "hf",
+   "at": "2026-11-15T11:10:03.296827+00:00"
   }
  ],
  "seeded_labels": [
