@@ -95,6 +95,9 @@
    "bytedance/seedance-2.0/us/image-to-video",
    "bytedance/seedance-2.0/us/reference-to-video",
    "bytedance/seedance-2.0/us/text-to-video",
+   "bytedance/seedance-2.5/flash/image-to-video",
+   "bytedance/seedance-2.5/flash/reference-to-video",
+   "bytedance/seedance-2.5/flash/text-to-video",
    "bytedance/seedance-2.5/us/draft/complete",
    "bytedance/seedance-2.5/us/image-to-video",
    "bytedance/seedance-2.5/us/reference-to-video",
@@ -3183,6 +3186,11 @@
    "model_key": "seedance-2.5-flash",
    "source": "runware",
    "at": "2026-11-15T06:11:55.342415+00:00"
+  },
+  {
+   "model_key": "seedance-2.5-flash",
+   "source": "fal",
+   "at": "2026-11-15T07:09:47.179377+00:00"
   }
  ],
  "seeded_labels": [
