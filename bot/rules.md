@@ -20,6 +20,7 @@
 - 같은 모델의 여러 엔드포인트(예: text-to-image 와 edit)는 model_key 를 똑같이 맞추세요.
 - 공식 경량화·고속 버전은 원래 모델과 다른 model_key 를 쓰세요(예: "h3-image" 와 "h3-image-highspeed").
 - 소문자, 버전 포함, 만든 곳 이름은 빼세요(예: "seedream-5.5", "veo-4").
+- 중복 알림을 막는 기준이 model_key 입니다. `state/seen.json` 의 `posted` 에 이미 있는 model_key 와 같은 모델·같은 버전이면 그 값을 글자 그대로 쓰세요(예: 이미 "seedance-2.5-flash" 가 있으면 "seedance-2-5-flash" 로 바꿔 쓰지 않기).
 
 ## relevant=true 인 항목에 채울 내용 (한국어)
 근거는 후보에 주어진 정보와 `out/catalog.tsv` 뿐입니다. 모르는 것은 지어내지 말고 아예 쓰지 마세요("확인 안 됨" 같은 문구도 쓰지 마세요). 웹 검색으로 정보를 보태지 마세요.

@@ -127,18 +127,45 @@ def date_line(group: list[dict]) -> str:
     return f"발표일: {d:%Y-%m-%d}({WEEKDAYS[d.weekday()]}) · {basis} 기준"
 
 
-def format_message(group: list[dict], catalog_ok: dict[str, bool]) -> str:
-    v = group[0]["verdict"]
-    c0 = group[0]
-    event = EVENT_LABEL.get(c0["source"], f"{c0['source_label']} 발표")
-    if any(c["verdict"].get("upcoming") is True for c in group):
-        event = f"{c0['source_label']} 출시 예정 발표" if c0["source"] in ("rss", "blog") else f"{event} (출시 예정)"
+SUPPLIERS = ("replicate", "runware")  # 우리가 API를 가져오는 곳. 첫 소식 뒤에도 새로 등록되면 한 줄로 알린다
 
-    # 같은 묶음 안에서 플랫폼 정보가 있는 쪽을 쓴다
+
+def merged_platforms(group: list[dict]) -> dict[str, str]:
+    """같은 묶음 안에서 플랫폼 정보가 있는 쪽을 쓴다. 출처가 그 플랫폼이면 출처 주소도 등록 근거로 본다."""
     plats = {p: "" for p in PLATFORMS}
     for c in group:
         for p, url in c["verdict"]["platforms"].items():
             plats[p] = plats[p] or url
+    for c in group:
+        if c["source"] in plats:
+            plats[c["source"]] = plats[c["source"]] or c["url"]
+    return plats
+
+
+def event_line(group: list[dict]) -> str:
+    upcoming = any(c["verdict"].get("upcoming") is True for c in group)
+    labels = []
+    for c in group:
+        if c["source"] in ("rss", "blog"):
+            label = f"{c['source_label']} {'출시 예정 발표' if upcoming else '발표'}"
+        else:
+            label = EVENT_LABEL.get(c["source"], f"{c['source_label']} 발표")
+            if upcoming:
+                label += " (출시 예정)"
+        if label not in labels:
+            labels.append(label)
+    return " / ".join(labels)
+
+
+def format_followup(v: dict, new_plats: dict[str, str]) -> str:
+    lines = [f"{PLATFORMS[p]}에 새로 등록됨 (<{url}|바로가기>)" for p, url in new_plats.items()]
+    return f"*[후속] {v['model_name']}* · {v['maker']}\n앞서 보낸 모델이 우리 공급처에 올라왔습니다.\n" + "\n".join(lines)
+
+
+def format_message(group: list[dict], catalog_ok: dict[str, bool]) -> str:
+    v = group[0]["verdict"]
+    event = event_line(group)
+    plats = merged_platforms(group)
     plat_lines = []
     for p, label in PLATFORMS.items():
         if plats[p]:
@@ -259,22 +286,36 @@ def main() -> None:
     if candidates:
         catalog, catalog_ok = load_catalog()
         verdicts = load_verdicts(set(by_id), catalog)
-        groups: dict[tuple[str, str], list[dict]] = {}
+        # 같은 모델은 출처(fal.ai, Runware 등)가 달라도 한 묶음으로 보낸다
+        groups: dict[str, list[dict]] = {}
         for v in verdicts:
             if not v["relevant"]:
                 continue
             c = by_id[v["id"]]
             c["verdict"] = v
-            groups.setdefault((v["model_key"].strip().lower(), c["source"]), []).append(c)
+            groups.setdefault(v["model_key"].strip().lower(), []).append(c)
 
-        posted_keys = {(p["model_key"], p["source"]) for p in state["posted"]}
+        posted: dict[str, set[str]] = {}
+        for p in state["posted"]:
+            if p["source"] != "retire":
+                posted.setdefault(p["model_key"], set()).add(p["source"])
         now = datetime.now(timezone.utc).isoformat()
-        for key, group in groups.items():
-            if key in posted_keys:
-                print(f"이미 보낸 모델이라 건너뜀: {key}")
-                continue
-            post_slack(format_message(group, catalog_ok))
-            state["posted"].append({"model_key": key[0], "source": key[1], "at": now})
+        for mk, group in groups.items():
+            plats = merged_platforms(group)
+            if mk in posted:
+                # 이미 소식을 보낸 모델: 우리 공급처에 새로 올라온 경우만 한 줄로 알린다
+                new = {p: plats[p] for p in SUPPLIERS if plats[p] and p not in posted[mk]}
+                if not new:
+                    print(f"이미 보낸 모델이라 건너뜀: {mk}")
+                    continue
+                post_slack(format_followup(group[0]["verdict"], new))
+                done = set(new)
+            else:
+                post_slack(format_message(group, catalog_ok))
+                # 출처와, 이 메시지에 '등록됨'으로 나간 플랫폼을 함께 기록해 같은 내용의 후속 알림을 막는다
+                done = {c["source"] for c in group} | {p for p, url in plats.items() if url}
+            state["posted"].extend({"model_key": mk, "source": s, "at": now} for s in sorted(done))
+            posted.setdefault(mk, set()).update(done)
             sent += 1
             if not DRY_RUN:
                 save_state(state)  # 중간에 실패해도 이미 보낸 건 다시 보내지 않도록
