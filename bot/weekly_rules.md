@@ -67,13 +67,15 @@
 - modality: "이미지", "영상", "오디오", "멀티모달" 중 하나. 메시지에서 모델 이름 앞에 [영상] 처럼 붙습니다
 - summary: 무엇이고 우리에게 왜 중요한지 한 문장(50자 안팎)
 - features: 기본 특징 2~4개. 한 항목에 한 가지 사실만 짧게(30자 안팎). 할 수 있는 작업, 해상도·길이, 참조 입력 수, 오디오, 속도·가격 같은 핵심 수치 위주. 페이지에 쓴 확인된 사실만
-- available: 지금 쓸 수 있는 곳 한 줄(예: "Runware · fal.ai · MiniMax API"). 아직 쓸 수 없으면 "출시 예정"
+- available: 지금 쓸 수 있는 곳 한 줄, 링크 없이 이름만(예: "Runware · fal.ai · MiniMax API"). 아직 쓸 수 없으면 "출시 예정"
+- source_url: 이 소식의 대표 출처 주소 하나. 공식 발표 글을 우선하고, 없으면 페이지 본문에 단 출처 중 가장 믿을 만한 것
 ```json
 {"page_url": "<만든 Confluence 페이지 주소>",
  "items": [
   {"model_name": "MiniMax H3-Image", "maker": "MiniMax", "modality": "이미지",
    "summary": "Runware·fal에 바로 올라온 4K 오픈 가중치 이미지 모델",
    "features": ["4K(4096×4096) 이미지를 10초 안에 생성", "참조 이미지 최대 16장", "생성과 편집을 한 모델로"],
-   "available": "Runware · fal.ai · MiniMax API · Hugging Face"}
+   "available": "Runware · fal.ai · MiniMax API · Hugging Face",
+   "source_url": "https://www.minimax.io/blog/minimax-h3-image"}
  ]}
 ```

@@ -100,6 +100,9 @@ def load_digest() -> dict:
                 errors.append(f"{i}번 항목의 {f} 가 비어 있음")
         if it.get("modality") not in MODALITIES:
             errors.append(f"{i}번 항목의 modality 는 {sorted(MODALITIES)} 중 하나여야 함: {it.get('modality')}")
+        src = str(it.get("source_url", "")).strip()
+        if not src.startswith("https://"):
+            errors.append(f"{i}번 항목의 source_url 이 https 주소가 아님: {src or '(비어 있음)'}")
         feats = it.get("features")
         if not isinstance(feats, list) or not 2 <= len(feats) <= 4 or not all(str(x).strip() for x in feats):
             errors.append(f"{i}번 항목의 features 는 2~4개의 문장 목록이어야 함")
@@ -122,6 +125,7 @@ def format_digest(week: list[str], digest: dict) -> str:
         lines += [f"• {x}" for x in it["features"]]
         if str(it.get("available", "")).strip():
             lines.append(f"제공: {it['available'].strip()}")
+        lines.append(f"<{it['source_url'].strip()}|출처>")
         blocks.append("\n".join(lines))
     blocks.append(f"<{digest['page_url']}|Confluence에서 자세히 보기>")
     return "\n\n".join(blocks)
