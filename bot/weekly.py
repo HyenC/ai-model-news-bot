@@ -28,6 +28,7 @@ CATALOG_PATH = OUT_DIR / "weekly_catalog.tsv"
 DIGEST_PATH = OUT_DIR / "weekly_digest.json"
 SENT_PATH = ROOT / "state" / "weekly_sent.json"
 MAX_ITEMS = 5
+MODALITIES = {"이미지", "영상", "오디오", "멀티모달"}
 DRY_RUN = os.environ.get("DRY_RUN") == "1"
 TEST = os.environ.get("WEEKLY_TEST") == "1"
 WEEKDAYS = "월화수목금토일"
@@ -78,7 +79,8 @@ def prepare() -> None:
     write_json(CANDIDATES_PATH, {"week": [mon, sun], "publish_date": pub, "items": list(items.values())})
     build_catalog()
     print(f"WEEK={mon}~{sun}")
-    print(f"TITLE=Weekly AI News {pub}" + (" (테스트)" if TEST else ""))
+    stamp = datetime.now(KST).strftime("%m%d-%H%M")
+    print(f"TITLE=Weekly AI News {pub}" + (f" (테스트 {stamp})" if TEST else ""))
     print(f"DAILY_RECORDS={len(items)}")
 
 
@@ -96,6 +98,11 @@ def load_digest() -> dict:
         for f in ("model_name", "maker", "summary"):
             if not str(it.get(f, "")).strip():
                 errors.append(f"{i}번 항목의 {f} 가 비어 있음")
+        if it.get("modality") not in MODALITIES:
+            errors.append(f"{i}번 항목의 modality 는 {sorted(MODALITIES)} 중 하나여야 함: {it.get('modality')}")
+        feats = it.get("features")
+        if not isinstance(feats, list) or not 2 <= len(feats) <= 4 or not all(str(x).strip() for x in feats):
+            errors.append(f"{i}번 항목의 features 는 2~4개의 문장 목록이어야 함")
     if errors:
         print("weekly_digest.json 형식 오류, 전송하지 않음:\n- " + "\n- ".join(errors), file=sys.stderr)
         sys.exit(1)
@@ -111,7 +118,11 @@ def format_digest(week: list[str], digest: dict) -> str:
     head = ("[테스트] " if TEST else "") + f"*Weekly AI News* · {_md(week[0])}~{_md(week[1])}"
     blocks = [head + f"\n지난주 주요 새 모델 {len(digest['items'])}건"]
     for i, it in enumerate(digest["items"], 1):
-        blocks.append(f"*{i}. {it['model_name']}* · {it['maker']}\n{it['summary'].strip()}")
+        lines = [f"*{i}. [{it['modality']}] {it['model_name']}* · {it['maker']}", it["summary"].strip()]
+        lines += [f"• {x}" for x in it["features"]]
+        if str(it.get("available", "")).strip():
+            lines.append(f"제공: {it['available'].strip()}")
+        blocks.append("\n".join(lines))
     blocks.append(f"<{digest['page_url']}|Confluence에서 자세히 보기>")
     return "\n\n".join(blocks)
 

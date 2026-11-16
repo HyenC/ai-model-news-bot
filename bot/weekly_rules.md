@@ -58,15 +58,22 @@
 
 - **<모델 이름>:** <언제·어디서 공개 예정인지, 공개 안 된 정보> 
 ```
+- `out/served_models.json` 에 이미 있는 모델(같은 모델·같은 버전)은 새 모델 5개에 넣지 않고 이 절에 넣습니다.
 - "기존 서빙 모델 업데이트"는 `out/served_models.json` 의 displayName 과 같은 모델(같은 계열의 새 기능·새 플랫폼 제공·가격 변경)만 넣습니다. 제공 종료 소식은 넣지 않습니다.
 - "출시 예정 레이더"는 지난주에 발표됐지만 아직 쓸 수 없는 모델입니다.
 
 ## 5. 슬랙 요약 (`out/weekly_digest.json`)
-새 모델 5개(고른 만큼)를 페이지와 같은 순서로 씁니다. summary 는 우리에게 왜 중요한지가 드러나는 한 문장(50자 안팎).
+새 모델(고른 만큼)을 페이지와 같은 순서로 씁니다. 슬랙만 읽어도 무슨 모델인지 알 수 있어야 합니다.
+- modality: "이미지", "영상", "오디오", "멀티모달" 중 하나. 메시지에서 모델 이름 앞에 [영상] 처럼 붙습니다
+- summary: 무엇이고 우리에게 왜 중요한지 한 문장(50자 안팎)
+- features: 기본 특징 2~4개. 한 항목에 한 가지 사실만 짧게(30자 안팎). 할 수 있는 작업, 해상도·길이, 참조 입력 수, 오디오, 속도·가격 같은 핵심 수치 위주. 페이지에 쓴 확인된 사실만
+- available: 지금 쓸 수 있는 곳 한 줄(예: "Runware · fal.ai · MiniMax API"). 아직 쓸 수 없으면 "출시 예정"
 ```json
 {"page_url": "<만든 Confluence 페이지 주소>",
  "items": [
-  {"model_name": "Seedance 2.5 Flash", "maker": "ByteDance",
-   "summary": "Runware에 바로 올라온 고속 영상 모델, 가격은 기존 대비 절반"}
+  {"model_name": "MiniMax H3-Image", "maker": "MiniMax", "modality": "이미지",
+   "summary": "Runware·fal에 바로 올라온 4K 오픈 가중치 이미지 모델",
+   "features": ["4K(4096×4096) 이미지를 10초 안에 생성", "참조 이미지 최대 16장", "생성과 편집을 한 모델로"],
+   "available": "Runware · fal.ai · MiniMax API · Hugging Face"}
  ]}
 ```
