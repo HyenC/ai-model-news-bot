@@ -2024,6 +2024,7 @@
    "heygen-avatar-v",
    "heygen-video-1-0",
    "heygen-video-agent",
+   "heygen-video-translate-1-0",
    "heygen-voice-1-0",
    "heygen-voice-1-0-turbo",
    "heygen-voice-1-0-turbo-free",
@@ -3233,6 +3234,16 @@
    "model_key": "rmbg-3.0",
    "source": "fal",
    "at": "2026-11-16T16:12:04.519652+00:00"
+  },
+  {
+   "model_key": "video-translate-1.0",
+   "source": "replicate",
+   "at": "2026-11-16T19:10:17.713693+00:00"
+  },
+  {
+   "model_key": "video-translate-1.0",
+   "source": "runware",
+   "at": "2026-11-16T19:10:17.713693+00:00"
   }
  ],
  "seeded_labels": [

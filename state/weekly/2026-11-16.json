@@ -29,5 +29,35 @@
    }
   ],
   "at": "2026-11-16T16:12:04.925618+00:00"
+ },
+ {
+  "kind": "new",
+  "model_key": "video-translate-1.0",
+  "model_name": "HeyGen Video Translate 1.0",
+  "maker": "HeyGen",
+  "modality": "영상",
+  "one_liner": "화자 목소리 그대로 영상을 번역·더빙하는 모델",
+  "features": [
+   "190개 언어로 영상 번역",
+   "화자 본인 목소리로 더빙",
+   "번역 음성에 맞춘 립싱크"
+  ],
+  "vs_previous": "",
+  "upcoming": false,
+  "other_availability": "",
+  "event": "Runware에 새로 등록",
+  "date": "",
+  "platforms": {
+   "replicate": "https://replicate.com/heygen/video-translate",
+   "runware": "https://runware.ai/models/heygen-video-translate-1-0",
+   "fal": ""
+  },
+  "sources": [
+   {
+    "url": "https://runware.ai/models/heygen-video-translate-1-0",
+    "title": "heygen video translate 1.0"
+   }
+  ],
+  "at": "2026-11-16T19:10:18.147762+00:00"
  }
 ]
