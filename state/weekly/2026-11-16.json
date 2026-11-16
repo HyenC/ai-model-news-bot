@@ -59,5 +59,91 @@
    }
   ],
   "at": "2026-11-16T19:10:18.147762+00:00"
+ },
+ {
+  "kind": "new",
+  "model_key": "iris-z-small",
+  "model_name": "Iris-Z Small",
+  "maker": "Sperid Labs",
+  "modality": "이미지",
+  "one_liner": "Iris-Z의 공식 경량 버전",
+  "features": [
+   "텍스트→이미지, 깊이맵→이미지",
+   "이미지와 깊이맵 동시 생성(RGB-D)",
+   "단일 이미지 깊이 추정",
+   "최대 1.31MP 출력"
+  ],
+  "vs_previous": "Iris-Z 대비 생성 시간이 약 3분의 1 수준입니다.",
+  "upcoming": false,
+  "other_availability": "",
+  "event": "fal.ai에 새로 등록",
+  "date": "발표일: 2026-11-17(화) · fal.ai 등록일 기준",
+  "platforms": {
+   "replicate": "",
+   "runware": "",
+   "fal": "https://fal.ai/models/speridlabs/iris-z/small/text-to-image"
+  },
+  "sources": [
+   {
+    "url": "https://fal.ai/models/speridlabs/iris-z/small/depth-to-image",
+    "title": "Iris-Z Small Depth to Image"
+   },
+   {
+    "url": "https://fal.ai/models/speridlabs/iris-z/small/text-to-rgbd",
+    "title": "Iris-Z Small Text to RGB-D"
+   },
+   {
+    "url": "https://fal.ai/models/speridlabs/iris-z/small/text-to-image",
+    "title": "Iris-Z Small Text to Image"
+   },
+   {
+    "url": "https://fal.ai/models/speridlabs/iris-z/small",
+    "title": "Iris-Z Small Depth Estimation"
+   }
+  ],
+  "at": "2026-11-16T21:10:04.588850+00:00"
+ },
+ {
+  "kind": "new",
+  "model_key": "iris-z",
+  "model_name": "Iris-Z",
+  "maker": "Sperid Labs",
+  "modality": "이미지",
+  "one_liner": "FLUX.2 기반 RGB·깊이 동시 생성 이미지 모델",
+  "features": [
+   "텍스트→이미지, 깊이맵→이미지",
+   "이미지와 깊이맵 동시 생성(RGB-D)",
+   "단일 이미지 깊이 추정",
+   "최대 1.31MP 출력"
+  ],
+  "vs_previous": "",
+  "upcoming": false,
+  "other_availability": "",
+  "event": "fal.ai에 새로 등록",
+  "date": "발표일: 2026-11-17(화) · fal.ai 등록일 기준",
+  "platforms": {
+   "replicate": "",
+   "runware": "",
+   "fal": "https://fal.ai/models/speridlabs/iris-z/text-to-image"
+  },
+  "sources": [
+   {
+    "url": "https://fal.ai/models/speridlabs/iris-z/depth-to-image",
+    "title": "Iris-Z Depth to Image"
+   },
+   {
+    "url": "https://fal.ai/models/speridlabs/iris-z/text-to-rgbd",
+    "title": "Iris-Z Text to RGB-D"
+   },
+   {
+    "url": "https://fal.ai/models/speridlabs/iris-z/text-to-image",
+    "title": "Iris-Z Text to Image"
+   },
+   {
+    "url": "https://fal.ai/models/speridlabs/iris-z",
+    "title": "Iris-Z Depth Estimation"
+   }
+  ],
+  "at": "2026-11-16T21:10:04.951548+00:00"
  }
 ]

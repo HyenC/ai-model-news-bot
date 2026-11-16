@@ -1180,6 +1180,14 @@
    "sonilo/v1.1/text-to-sound-effects",
    "sonilo/v1.1/video-to-video-music",
    "sonilo/v1.1/video-to-video-sound-effects",
+   "speridlabs/iris-z",
+   "speridlabs/iris-z/depth-to-image",
+   "speridlabs/iris-z/small",
+   "speridlabs/iris-z/small/depth-to-image",
+   "speridlabs/iris-z/small/text-to-image",
+   "speridlabs/iris-z/small/text-to-rgbd",
+   "speridlabs/iris-z/text-to-image",
+   "speridlabs/iris-z/text-to-rgbd",
    "tbc/mischief-1/image-to-video",
    "topaz/adjust/image",
    "topaz/deblur/video",
@@ -3245,6 +3253,16 @@
    "model_key": "video-translate-1.0",
    "source": "runware",
    "at": "2026-11-16T19:10:17.713693+00:00"
+  },
+  {
+   "model_key": "iris-z-small",
+   "source": "fal",
+   "at": "2026-11-16T21:10:04.189914+00:00"
+  },
+  {
+   "model_key": "iris-z",
+   "source": "fal",
+   "at": "2026-11-16T21:10:04.189914+00:00"
   }
  ],
  "seeded_labels": [
