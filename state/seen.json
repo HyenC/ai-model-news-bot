@@ -75,6 +75,7 @@
    "bria/increase-resolution",
    "bria/product-dimensions",
    "bria/replace-background",
+   "bria/rmbg-3",
    "bria/upscale/creative",
    "bria/video/background-removal",
    "bria/video/background-removal/green-screen-despill",
@@ -3220,6 +3221,11 @@
    "model_key": "tiny-voca",
    "source": "hf",
    "at": "2026-11-15T11:10:03.296827+00:00"
+  },
+  {
+   "model_key": "rmbg-3.0",
+   "source": "fal",
+   "at": "2026-11-16T16:12:04.519652+00:00"
   }
  ],
  "seeded_labels": [

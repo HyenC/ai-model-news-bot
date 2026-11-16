@@ -1,0 +1,33 @@
+[
+ {
+  "kind": "new",
+  "model_key": "rmbg-3.0",
+  "model_name": "RMBG 3.0",
+  "maker": "Bria",
+  "modality": "이미지",
+  "one_liner": "Bria의 이미지 배경 제거 모델 새 버전",
+  "features": [
+   "배경 제거 후 투명 PNG 출력",
+   "단체 사진·모션 블러에도 강함",
+   "그림자·반사·메시 처리",
+   "제품 글자·로고 보존"
+  ],
+  "vs_previous": "",
+  "upcoming": false,
+  "other_availability": "",
+  "event": "fal.ai에 새로 등록",
+  "date": "발표일: 2026-11-16(월) · fal.ai 등록일 기준",
+  "platforms": {
+   "replicate": "",
+   "runware": "",
+   "fal": "https://fal.ai/models/bria/rmbg-3"
+  },
+  "sources": [
+   {
+    "url": "https://fal.ai/models/bria/rmbg-3",
+    "title": "RMBG-3.0"
+   }
+  ],
+  "at": "2026-11-16T16:12:04.925618+00:00"
+ }
+]
