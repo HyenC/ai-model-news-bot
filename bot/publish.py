@@ -19,7 +19,7 @@ import requests
 from common import (
     CANDIDATES_PATH, CATALOG_PATH, CATALOG_STATUS_PATH, PENDING_PATH, RETIRE_VERDICTS_PATH,
     RETIREMENTS_PATH, SERVED_PATH, VERDICTS_PATH,
-    load_state, save_state,
+    append_weekly, load_state, save_state,
 )
 from sources import PLATFORMS, RETIRE_SOURCES
 
@@ -160,6 +160,18 @@ def event_line(group: list[dict]) -> str:
 def format_followup(v: dict, new_plats: dict[str, str]) -> str:
     lines = [f"{PLATFORMS[p]}에 새로 등록됨 (<{url}|바로가기>)" for p, url in new_plats.items()]
     return f"*[후속] {v['model_name']}* · {v['maker']}\n앞서 보낸 모델이 우리 공급처에 올라왔습니다.\n" + "\n".join(lines)
+
+
+def weekly_entry(mk: str, group: list[dict], plats: dict[str, str]) -> dict:
+    """주간 정리에서 다시 쓸 수 있게, 실시간으로 보낸 소식의 내용을 그대로 남긴다."""
+    v = group[0]["verdict"]
+    return {
+        "kind": "new", "model_key": mk,
+        **{f: v.get(f, "") for f in ("model_name", "maker", "modality", "one_liner", "features",
+                                     "vs_previous", "upcoming", "other_availability")},
+        "event": event_line(group), "date": date_line(group), "platforms": plats,
+        "sources": [{"url": c["url"], "title": c["title"]} for c in group[:5]],
+    }
 
 
 def format_message(group: list[dict], catalog_ok: dict[str, bool]) -> str:
@@ -310,8 +322,13 @@ def main() -> None:
                     continue
                 post_slack(format_followup(group[0]["verdict"], new))
                 done = set(new)
+                if not DRY_RUN:
+                    append_weekly({"kind": "followup", "model_key": mk,
+                                   "model_name": group[0]["verdict"]["model_name"], "platforms": new})
             else:
                 post_slack(format_message(group, catalog_ok))
+                if not DRY_RUN:
+                    append_weekly(weekly_entry(mk, group, plats))
                 # 출처와, 이 메시지에 '등록됨'으로 나간 플랫폼을 함께 기록해 같은 내용의 후속 알림을 막는다
                 done = {c["source"] for c in group} | {p for p, url in plats.items() if url}
             state["posted"].extend({"model_key": mk, "source": s, "at": now} for s in sorted(done))

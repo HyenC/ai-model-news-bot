@@ -22,12 +22,19 @@ Claude Code 클라우드 예약 작업으로 돌아갑니다. 절차는 `bot/ROU
 - 같은 모델은 출처가 여러 곳이어도 30일 안에 한 번만 보냅니다. 단, 그 뒤 우리 공급처(Replicate·Runware)에 새로 올라오면 `[후속]` 한 줄 알림을 보냅니다. (fal.ai·HF 등록은 다시 보내지 않음)
 - 공식 경량화·고속 버전은 보내고, 다른 곳이 만든 경량화 버전은 보내지 않습니다.
 
+## 주간 정리 (매주 월요일 09:00 KST)
+- 데일리로 보낸 새 모델 소식을 `state/weekly/<주 시작 월요일>.json` 에 모아 둡니다(최근 8주). 제공 종료 공지는 넣지 않습니다.
+- 별도 예약 실행이 `bot/WEEKLY.md` 절차로 지난주(월~일) 소식을 데일리 기록과 웹 검색으로 모아, 가장 중요한 새 모델 최대 5개와 기존 서빙 모델 업데이트·출시 예정 레이더를 Confluence 페이지로 씁니다(`bot/weekly_rules.md`).
+- 슬랙(`WEEKLY_SLACK_WEBHOOK_URL`)에는 새 모델 제목과 한 줄 요약, Confluence 링크만 보냅니다.
+- Confluence 위치는 공개 저장소에 두지 않고 예약 실행 요청 메시지에만 둡니다.
+- 보낸 주는 `state/weekly_sent.json` 에 기록해 두 번 보내지 않습니다.
+
 ## 클라우드 환경 설정
 - 네트워크: Limited + Allow package managers + 아래 도메인 허용
   `api.fal.ai`, `runware.ai`, `replicate.com`, `huggingface.co`, `hooks.slack.com`,
   `deepmind.google`, `blog.google`, `openai.com`, `elevenlabs.io`, `qwenlm.github.io`, `blog.fal.ai`,
   `bfl.ai`, `runwayml.com`, `lumalabs.ai`, `www.minimax.io`, `ai.meta.com`, `www.recraft.ai`, `ltx.io`, `suno.com`
-- 환경 변수: `SLACK_WEBHOOK_URL`
+- 환경 변수: `SLACK_WEBHOOK_URL`(실시간), `WEEKLY_SLACK_WEBHOOK_URL`(주간 정리)
 
 ## 로컬 테스트
 ```
