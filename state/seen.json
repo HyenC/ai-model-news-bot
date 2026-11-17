@@ -916,6 +916,23 @@
    "fal-ai/thinksound",
    "fal-ai/thinksound/audio",
    "fal-ai/uso",
+   "fal-ai/veo3",
+   "fal-ai/veo3.1",
+   "fal-ai/veo3.1/extend-video",
+   "fal-ai/veo3.1/fast",
+   "fal-ai/veo3.1/fast/extend-video",
+   "fal-ai/veo3.1/fast/first-last-frame-to-video",
+   "fal-ai/veo3.1/fast/image-to-video",
+   "fal-ai/veo3.1/fast/reference-to-video",
+   "fal-ai/veo3.1/first-last-frame-to-video",
+   "fal-ai/veo3.1/image-to-video",
+   "fal-ai/veo3.1/lite",
+   "fal-ai/veo3.1/lite/first-last-frame-to-video",
+   "fal-ai/veo3.1/lite/image-to-video",
+   "fal-ai/veo3.1/reference-to-video",
+   "fal-ai/veo3/fast",
+   "fal-ai/veo3/fast/image-to-video",
+   "fal-ai/veo3/image-to-video",
    "fal-ai/vibevoice",
    "fal-ai/vibevoice/0.5b",
    "fal-ai/vibevoice/7b",
@@ -1280,6 +1297,8 @@
    "adventists-ai/Sophon-Realtime-v1",
    "akhaliq/MiniMax-H3-Image-Character-Swap",
    "akhaliq/minimax-h3-image-pdmd-2step",
+   "apple/FastFrames-L",
+   "apple/FastFrames-S",
    "chatrlabs/Qwen-Image-2.1-Uncensored-Omni-Quantized",
    "data-archetype/moss_image_base_dmd2",
    "empero-ai/PiVo-1.4M",
@@ -3331,6 +3350,16 @@
    "model_key": "mai-image-2.7",
    "source": "fal",
    "at": "2026-11-17T19:10:18.362363+00:00"
+  },
+  {
+   "model_key": "fastframes-s",
+   "source": "hf",
+   "at": "2026-11-17T22:10:15.820413+00:00"
+  },
+  {
+   "model_key": "fastframes-l",
+   "source": "hf",
+   "at": "2026-11-17T22:10:15.820413+00:00"
   }
  ],
  "seeded_labels": [

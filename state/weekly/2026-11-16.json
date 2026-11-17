@@ -323,5 +323,63 @@
    }
   ],
   "at": "2026-11-17T19:10:19.137564+00:00"
+ },
+ {
+  "kind": "new",
+  "model_key": "fastframes-s",
+  "model_name": "FastFrames-S",
+  "maker": "Apple",
+  "modality": "영상",
+  "one_liner": "Apple이 공개한 텍스트→영상 생성 모델(소형)",
+  "features": [
+   "텍스트→영상 생성",
+   "Wan2.1 T2V 1.3B 기반 파인튜닝"
+  ],
+  "vs_previous": "",
+  "upcoming": false,
+  "other_availability": "Hugging Face 오픈 가중치(라이선스: apple-amlr)",
+  "event": "Hugging Face에 공개",
+  "date": "발표일: 2026-11-17(화) · Hugging Face 공개일 기준",
+  "platforms": {
+   "replicate": "",
+   "runware": "",
+   "fal": ""
+  },
+  "sources": [
+   {
+    "url": "https://huggingface.co/apple/FastFrames-S",
+    "title": "apple/FastFrames-S"
+   }
+  ],
+  "at": "2026-11-17T22:10:16.242844+00:00"
+ },
+ {
+  "kind": "new",
+  "model_key": "fastframes-l",
+  "model_name": "FastFrames-L",
+  "maker": "Apple",
+  "modality": "영상",
+  "one_liner": "Apple이 공개한 텍스트→영상 생성 모델(대형)",
+  "features": [
+   "텍스트→영상 생성",
+   "Wan2.1 T2V 14B 기반 파인튜닝"
+  ],
+  "vs_previous": "",
+  "upcoming": false,
+  "other_availability": "Hugging Face 오픈 가중치(라이선스: apple-amlr)",
+  "event": "Hugging Face에 공개",
+  "date": "발표일: 2026-11-17(화) · Hugging Face 공개일 기준",
+  "platforms": {
+   "replicate": "",
+   "runware": "",
+   "fal": ""
+  },
+  "sources": [
+   {
+    "url": "https://huggingface.co/apple/FastFrames-L",
+    "title": "apple/FastFrames-L"
+   }
+  ],
+  "at": "2026-11-17T22:10:16.630780+00:00"
  }
 ]
