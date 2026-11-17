@@ -145,5 +145,35 @@
    }
   ],
   "at": "2026-11-16T21:10:04.951548+00:00"
+ },
+ {
+  "kind": "new",
+  "model_key": "kling-image-4.0",
+  "model_name": "Kling Image 4.0",
+  "maker": "Kling AI",
+  "modality": "이미지",
+  "one_liner": "Kling AI의 이미지 생성·편집 모델 새 버전",
+  "features": [
+   "텍스트→이미지 생성",
+   "이미지→이미지 변환",
+   "이미지 편집"
+  ],
+  "vs_previous": "",
+  "upcoming": false,
+  "other_availability": "",
+  "event": "Runware에 새로 등록",
+  "date": "발표일: 2026-11-17(화) · Runware 출시일 기준",
+  "platforms": {
+   "replicate": "",
+   "runware": "https://runware.ai/models/klingai-image-4-0",
+   "fal": ""
+  },
+  "sources": [
+   {
+    "url": "https://runware.ai/models/klingai-image-4-0",
+    "title": "kling image 4.0"
+   }
+  ],
+  "at": "2026-11-17T15:11:25.030867+00:00"
  }
 ]

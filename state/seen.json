@@ -1249,6 +1249,7 @@
    "Abiray/MiniMax-H3-Image-GGUF",
    "ChenDY/NitroFusion2",
    "Comfy-Org/MiniMax-H3-Image",
+   "Comfy-Org/PAN2",
    "ConwayResearch/Underdog-Woof",
    "KBlueLeaf/MOSS-Image-heal",
    "Linum-AI/pjit-21k",
@@ -1383,6 +1384,7 @@
    "https://elevenlabs.io/blog/what-is-an-llm",
    "https://elevenlabs.io/blog/what-is-call-transcription",
    "https://elevenlabs.io/blog/what-is-turn-taking",
+   "https://elevenlabs.io/blog/whatsnewinaudiobooks",
    "https://huggingface.co/blog/3d-lora-finetuning",
    "https://huggingface.co/blog/Dharma-AI/dharma-field-extractor",
    "https://huggingface.co/blog/Dharma-AI/vocabx-vocabulary-specialization",
@@ -2075,6 +2077,7 @@
    "klingai-avatar-2-0-pro",
    "klingai-avatar-2-0-standard",
    "klingai-image-3-0",
+   "klingai-image-4-0",
    "klingai-image-o1",
    "klingai-image-o3",
    "klingai-lip-sync",
@@ -2642,6 +2645,7 @@
    "https://suno.com/blog/introducing-suno-scenes",
    "https://suno.com/blog/introducing-v4-5",
    "https://suno.com/blog/introducing-v6",
+   "https://suno.com/blog/introducing-visuals",
    "https://suno.com/blog/matt-steffanina",
    "https://suno.com/blog/personas",
    "https://suno.com/blog/rss.xml",
@@ -3283,6 +3287,11 @@
    "model_key": "iris-z",
    "source": "fal",
    "at": "2026-11-16T21:10:04.189914+00:00"
+  },
+  {
+   "model_key": "kling-image-4.0",
+   "source": "runware",
+   "at": "2026-11-17T15:11:24.611543+00:00"
   }
  ],
  "seeded_labels": [
