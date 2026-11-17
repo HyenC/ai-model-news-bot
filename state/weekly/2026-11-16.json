@@ -175,5 +175,83 @@
    }
   ],
   "at": "2026-11-17T15:11:25.030867+00:00"
+ },
+ {
+  "kind": "new",
+  "model_key": "avatar-6-turbo",
+  "model_name": "HeyGen Avatar 6 Turbo",
+  "maker": "HeyGen",
+  "modality": "영상",
+  "one_liner": "HeyGen Avatar 6의 저가형 토킹 아바타 영상 모델",
+  "features": [
+   "스톡 아바타가 텍스트 대본 발화",
+   "업로드 오디오에 립싱크",
+   "1080p·2K 출력",
+   "16:9·9:16·1:1 등 5가지 비율"
+  ],
+  "vs_previous": "Avatar 6의 저가형(Turbo) 등급입니다.",
+  "upcoming": false,
+  "other_availability": "",
+  "event": "fal.ai에 새로 등록",
+  "date": "발표일: 2026-11-17(화) · fal.ai 등록일 기준",
+  "platforms": {
+   "replicate": "",
+   "runware": "",
+   "fal": "https://fal.ai/models/heygen/avatar-6/turbo/identity-to-video"
+  },
+  "sources": [
+   {
+    "url": "https://fal.ai/models/heygen/avatar-6/turbo/identity-to-video",
+    "title": "HeyGen Avatar 6 Turbo Identity to Video"
+   },
+   {
+    "url": "https://fal.ai/models/heygen/avatar-6/turbo/ref-video-to-video",
+    "title": "HeyGen Avatar 6 Turbo Reference Video to Video"
+   },
+   {
+    "url": "https://fal.ai/models/heygen/avatar-6/turbo/image-to-video",
+    "title": "HeyGen Avatar 6 Turbo Image to Video"
+   }
+  ],
+  "at": "2026-11-17T18:10:14.351698+00:00"
+ },
+ {
+  "kind": "new",
+  "model_key": "avatar-6",
+  "model_name": "HeyGen Avatar 6",
+  "maker": "HeyGen",
+  "modality": "영상",
+  "one_liner": "HeyGen의 토킹 아바타 영상 생성 모델 새 버전",
+  "features": [
+   "스톡 아바타가 텍스트 대본 발화",
+   "업로드 오디오에 립싱크",
+   "1080p·2K 출력",
+   "16:9·9:16·1:1 등 5가지 비율"
+  ],
+  "vs_previous": "",
+  "upcoming": false,
+  "other_availability": "",
+  "event": "fal.ai에 새로 등록",
+  "date": "발표일: 2026-11-17(화) · fal.ai 등록일 기준",
+  "platforms": {
+   "replicate": "",
+   "runware": "",
+   "fal": "https://fal.ai/models/heygen/avatar-6/identity-to-video"
+  },
+  "sources": [
+   {
+    "url": "https://fal.ai/models/heygen/avatar-6/identity-to-video",
+    "title": "HeyGen Avatar 6 Identity to Video"
+   },
+   {
+    "url": "https://fal.ai/models/heygen/avatar-6/ref-video-to-video",
+    "title": "HeyGen Avatar 6 Reference Video to Video"
+   },
+   {
+    "url": "https://fal.ai/models/heygen/avatar-6/image-to-video",
+    "title": "HeyGen Avatar 6 Image to Video"
+   }
+  ],
+  "at": "2026-11-17T18:10:14.685503+00:00"
  }
 ]

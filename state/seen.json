@@ -1035,6 +1035,12 @@
    "google/nano-banana-lite",
    "google/nano-banana-lite/edit",
    "google/virtual-try-on",
+   "heygen/avatar-6/identity-to-video",
+   "heygen/avatar-6/image-to-video",
+   "heygen/avatar-6/ref-video-to-video",
+   "heygen/avatar-6/turbo/identity-to-video",
+   "heygen/avatar-6/turbo/image-to-video",
+   "heygen/avatar-6/turbo/ref-video-to-video",
    "heygen/heygen-video/image-to-video",
    "heygen/heygen-video/reference-to-video",
    "heygen/heygen-video/text-to-video",
@@ -1372,6 +1378,7 @@
    "https://elevenlabs.io/blog/partner-program",
    "https://elevenlabs.io/blog/postnord",
    "https://elevenlabs.io/blog/scribe-v3",
+   "https://elevenlabs.io/blog/scribe-v3-live-medical",
    "https://elevenlabs.io/blog/sfx-v3-for-developers",
    "https://elevenlabs.io/blog/soundcloud",
    "https://elevenlabs.io/blog/srt-file-guide",
@@ -1423,6 +1430,7 @@
    "https://huggingface.co/blog/token-pooling",
    "https://huggingface.co/blog/torch-neuronx-model-support",
    "https://huggingface.co/blog/transformers-mic",
+   "https://openai.com/ads/blog/chatgpt-ads-increases-its-market-presence",
    "https://openai.com/ads/customers/flipsnack",
    "https://openai.com/business/customer-stories/amplitude",
    "https://openai.com/business/customer-stories/gondola",
@@ -3296,6 +3304,16 @@
    "model_key": "kling-image-4.0",
    "source": "runware",
    "at": "2026-11-17T15:11:24.611543+00:00"
+  },
+  {
+   "model_key": "avatar-6-turbo",
+   "source": "fal",
+   "at": "2026-11-17T18:10:13.907800+00:00"
+  },
+  {
+   "model_key": "avatar-6",
+   "source": "fal",
+   "at": "2026-11-17T18:10:13.907800+00:00"
   }
  ],
  "seeded_labels": [
