@@ -253,5 +253,75 @@
    }
   ],
   "at": "2026-11-17T18:10:14.685503+00:00"
+ },
+ {
+  "kind": "new",
+  "model_key": "mai-image-2.7-flash",
+  "model_name": "MAI-Image-2.7 Flash",
+  "maker": "Microsoft",
+  "modality": "이미지",
+  "one_liner": "MAI-Image-2.7의 공식 저비용 Flash 버전",
+  "features": [
+   "텍스트→이미지, 이미지 편집",
+   "편집 시 입력 이미지 최대 2장",
+   "프리셋·사용자 지정 크기",
+   "PNG·JPEG·WebP 출력"
+  ],
+  "vs_previous": "MAI-Image-2.7보다 저렴하게 쓸 수 있는 Microsoft 공식 Flash 변형입니다.",
+  "upcoming": false,
+  "other_availability": "",
+  "event": "fal.ai에 새로 등록",
+  "date": "발표일: 2026-11-15(일) · fal.ai 등록일 기준",
+  "platforms": {
+   "replicate": "",
+   "runware": "",
+   "fal": "https://fal.ai/models/microsoft/mai-image-2.7/flash/text-to-image"
+  },
+  "sources": [
+   {
+    "url": "https://fal.ai/models/microsoft/mai-image-2.7/flash/edit",
+    "title": "MAI-Image-2.7 Flash Edit"
+   },
+   {
+    "url": "https://fal.ai/models/microsoft/mai-image-2.7/flash/text-to-image",
+    "title": "MAI-Image-2.7 Flash"
+   }
+  ],
+  "at": "2026-11-17T19:10:18.850732+00:00"
+ },
+ {
+  "kind": "new",
+  "model_key": "mai-image-2.7",
+  "model_name": "MAI-Image-2.7",
+  "maker": "Microsoft",
+  "modality": "이미지",
+  "one_liner": "Microsoft의 이미지 생성·편집 모델 새 버전",
+  "features": [
+   "텍스트→이미지, 이미지 편집",
+   "편집 시 입력 이미지 최대 2장",
+   "프리셋·사용자 지정 크기",
+   "PNG·JPEG·WebP 출력"
+  ],
+  "vs_previous": "",
+  "upcoming": false,
+  "other_availability": "",
+  "event": "fal.ai에 새로 등록",
+  "date": "발표일: 2026-11-15(일) · fal.ai 등록일 기준",
+  "platforms": {
+   "replicate": "",
+   "runware": "",
+   "fal": "https://fal.ai/models/microsoft/mai-image-2.7/text-to-image"
+  },
+  "sources": [
+   {
+    "url": "https://fal.ai/models/microsoft/mai-image-2.7/edit",
+    "title": "MAI-Image-2.7 Edit"
+   },
+   {
+    "url": "https://fal.ai/models/microsoft/mai-image-2.7/text-to-image",
+    "title": "MAI-Image-2.7"
+   }
+  ],
+  "at": "2026-11-17T19:10:19.137564+00:00"
  }
 ]

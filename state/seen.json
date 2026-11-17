@@ -1099,6 +1099,10 @@
    "microsoft/mai-image-2.5-pro",
    "microsoft/mai-image-2.5-pro/edit",
    "microsoft/mai-image-2.5/edit",
+   "microsoft/mai-image-2.7/edit",
+   "microsoft/mai-image-2.7/flash/edit",
+   "microsoft/mai-image-2.7/flash/text-to-image",
+   "microsoft/mai-image-2.7/text-to-image",
    "minimax/h3-image/edit",
    "minimax/h3-image/highspeed/edit",
    "minimax/h3-image/highspeed/text-to-image",
@@ -1441,6 +1445,7 @@
    "https://openai.com/index/a-thousand-fewer-paths-to-root",
    "https://openai.com/index/advancing-computer-use-for-healthcare-teams",
    "https://openai.com/index/ai-effect-on-freelance-work",
+   "https://openai.com/index/astra-law-6-2",
    "https://openai.com/index/australian-universities-ai-native-graduates",
    "https://openai.com/index/chatgpt-enterprise-aws-marketplace",
    "https://openai.com/index/chatgpt-plus-for-veterans",
@@ -1457,6 +1462,7 @@
    "https://openai.com/index/helping-caregivers-use-ai-in-everyday-life",
    "https://openai.com/index/introducing-businesses-chatgpt",
    "https://openai.com/index/introducing-chatgpt-wallet",
+   "https://openai.com/index/introducing-gpt-6-2-astra-sol",
    "https://openai.com/index/introducing-gpt-6-cyber",
    "https://openai.com/index/introducing-images-2-6",
    "https://openai.com/index/introducing-openai-for-chile",
@@ -3314,6 +3320,16 @@
    "model_key": "avatar-6",
    "source": "fal",
    "at": "2026-11-17T18:10:13.907800+00:00"
+  },
+  {
+   "model_key": "mai-image-2.7-flash",
+   "source": "fal",
+   "at": "2026-11-17T19:10:18.362363+00:00"
+  },
+  {
+   "model_key": "mai-image-2.7",
+   "source": "fal",
+   "at": "2026-11-17T19:10:18.362363+00:00"
   }
  ],
  "seeded_labels": [
