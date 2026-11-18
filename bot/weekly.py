@@ -124,7 +124,8 @@ def format_digest(week: list[str], digest: dict) -> str:
         lines = [f"*{i}. [{it['modality']}] {it['model_name']}* · {it['maker']}", it["summary"].strip()]
         lines += [f"• {x}" for x in it["features"]]
         if str(it.get("available", "")).strip():
-            lines.append(f"제공: {it['available'].strip()}")
+            # 슬랙이 "fal.ai" 같은 글자를 자동 링크로 만들지 않게 점 앞에 폭 없는 공백을 넣는다
+            lines.append("제공: " + it["available"].strip().replace(".", "\u200b."))
         lines.append(f"<{it['source_url'].strip()}|출처>")
         blocks.append("\n".join(lines))
     blocks.append(f"<{digest['page_url']}|Confluence에서 자세히 보기>")

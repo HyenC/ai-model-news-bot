@@ -158,7 +158,7 @@ def event_line(group: list[dict]) -> str:
 
 
 def format_followup(v: dict, new_plats: dict[str, str]) -> str:
-    lines = [f"{PLATFORMS[p]}에 새로 등록됨 (<{url}|바로가기>)" for p, url in new_plats.items()]
+    lines = [f"{no_autolink(PLATFORMS[p])}에 새로 등록됨 (<{url}|바로가기>)" for p, url in new_plats.items()]
     return f"*[후속] {v['model_name']}* · {v['maker']}\n앞서 보낸 모델이 우리 공급처에 올라왔습니다.\n" + "\n".join(lines)
 
 
@@ -174,6 +174,11 @@ def weekly_entry(mk: str, group: list[dict], plats: dict[str, str]) -> dict:
     }
 
 
+def no_autolink(label: str) -> str:
+    """슬랙은 "fal.ai" 같은 도메인 모양 글자를 자동으로 링크로 만든다. 점 앞에 폭 없는 공백을 넣어 막는다."""
+    return label.replace(".", "\u200b.")
+
+
 def format_message(group: list[dict], catalog_ok: dict[str, bool]) -> str:
     v = group[0]["verdict"]
     event = event_line(group)
@@ -181,11 +186,11 @@ def format_message(group: list[dict], catalog_ok: dict[str, bool]) -> str:
     plat_lines = []
     for p, label in PLATFORMS.items():
         if plats[p]:
-            plat_lines.append(f"{label}: 등록됨 (<{plats[p]}|바로가기>)")
+            plat_lines.append(f"{no_autolink(label)}: 등록됨 (<{plats[p]}|바로가기>)")
         elif catalog_ok.get(p):
-            plat_lines.append(f"{label}: 아직 없음")
+            plat_lines.append(f"{no_autolink(label)}: 아직 없음")
         else:
-            plat_lines.append(f"{label}: 이번에 확인 실패")
+            plat_lines.append(f"{no_autolink(label)}: 이번에 확인 실패")
 
     blocks = [
         f"*[{v['modality']}] {v['model_name']}* · {v['maker']}\n{event}"
