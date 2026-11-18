@@ -420,5 +420,33 @@
    "runware": "https://runware.ai/models/bytedance-seedream-5-5"
   },
   "at": "2026-11-18T15:11:25.592583+00:00"
+ },
+ {
+  "kind": "new",
+  "model_key": "genie-4",
+  "model_name": "Genie 4",
+  "maker": "Google DeepMind",
+  "modality": "영상",
+  "one_liner": "Google DeepMind의 월드 모델 새 버전",
+  "features": [
+   "정식 공개, 지금 사용 가능"
+  ],
+  "vs_previous": "",
+  "upcoming": false,
+  "other_availability": "",
+  "event": "Google DeepMind 발표",
+  "date": "발표일: 2026-11-19(목) · 공식 글 게시일 기준",
+  "platforms": {
+   "replicate": "",
+   "runware": "",
+   "fal": ""
+  },
+  "sources": [
+   {
+    "url": "https://deepmind.google/blog/genie-4-is-now-available/",
+    "title": "Genie 4 is now available"
+   }
+  ],
+  "at": "2026-11-18T19:10:06.142228+00:00"
  }
 ]
