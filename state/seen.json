@@ -1448,6 +1448,7 @@
    "https://huggingface.co/blog/ibm-granite/granite-switch-4-1-1",
    "https://huggingface.co/blog/ibm-granite/llmon-an-llm-native-markup-language-now-in-granite",
    "https://huggingface.co/blog/ibm-research/palette-deck-building",
+   "https://huggingface.co/blog/ibm-research/time-series-powered-streamhouse",
    "https://huggingface.co/blog/microsoft/thinkingbox-training",
    "https://huggingface.co/blog/mistral-large4",
    "https://huggingface.co/blog/mps-pytorch-2-15",
@@ -1458,6 +1459,7 @@
    "https://huggingface.co/blog/phonon-tts",
    "https://huggingface.co/blog/qvac/botpsy",
    "https://huggingface.co/blog/reflection-beam",
+   "https://huggingface.co/blog/rumble-2-flash",
    "https://huggingface.co/blog/swiss-ai/apertus-v15-release-notes",
    "https://huggingface.co/blog/token-pooling",
    "https://huggingface.co/blog/torch-neuronx-model-support",
@@ -2863,7 +2865,9 @@
    "https://www.recraft.ai/blog/recrafts-next-chapter-creativity-without-compromise",
    "https://www.recraft.ai/blog/resize-and-crop-photos-like-a-pro",
    "https://www.recraft.ai/blog/reve-ai-alternative",
+   "https://www.recraft.ai/blog/seedance-2-5-flash",
    "https://www.recraft.ai/blog/seedance-2-5-in-recraft-studio",
+   "https://www.recraft.ai/blog/seedream-5-5",
    "https://www.recraft.ai/blog/stable-diffusion-alternatives",
    "https://www.recraft.ai/blog/style-creation-in-recraft-now-supports-prompt-engineering",
    "https://www.recraft.ai/blog/testing-recraft-v4-1-and-krea-2",
@@ -3372,6 +3376,16 @@
    "model_key": "fastframes-l",
    "source": "hf",
    "at": "2026-11-17T22:10:15.820413+00:00"
+  },
+  {
+   "model_key": "rumble-2-flash",
+   "source": "rss",
+   "at": "2026-11-18T15:11:24.495168+00:00"
+  },
+  {
+   "model_key": "seedream-5.5",
+   "source": "runware",
+   "at": "2026-11-18T15:11:24.495168+00:00"
   }
  ],
  "seeded_labels": [

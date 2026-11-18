@@ -381,5 +381,44 @@
    }
   ],
   "at": "2026-11-17T22:10:16.630780+00:00"
+ },
+ {
+  "kind": "new",
+  "model_key": "rumble-2-flash",
+  "model_name": "Rumble-2-Flash",
+  "maker": "Hugging Face",
+  "modality": "오디오",
+  "one_liner": "40개 이상 언어를 지원하는 오픈 0.5B 음성 모델",
+  "features": [
+   "파라미터 0.5B 경량 모델",
+   "40개 이상 언어 지원",
+   "오픈 모델로 공개"
+  ],
+  "vs_previous": "",
+  "upcoming": false,
+  "other_availability": "Hugging Face 오픈 모델",
+  "event": "Hugging Face 블로그 발표",
+  "date": "발표일: 2026-11-18(수) · 공식 글 게시일 기준",
+  "platforms": {
+   "replicate": "",
+   "runware": "",
+   "fal": ""
+  },
+  "sources": [
+   {
+    "url": "https://huggingface.co/blog/rumble-2-flash",
+    "title": "Rumble-2-Flash: an open 0.5B speech model for 40+ languages"
+   }
+  ],
+  "at": "2026-11-18T15:11:25.129068+00:00"
+ },
+ {
+  "kind": "followup",
+  "model_key": "seedream-5.5",
+  "model_name": "Seedream 5.5",
+  "platforms": {
+   "runware": "https://runware.ai/models/bytedance-seedream-5-5"
+  },
+  "at": "2026-11-18T15:11:25.592583+00:00"
  }
 ]
