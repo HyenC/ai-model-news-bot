@@ -1293,6 +1293,7 @@
    "Pika-Labs/Pika-H3-Flex-Turbo-LoRA",
    "PrunaAI/P-H3-Image",
    "PrunaAI/P-H3-Image-Comfy",
+   "PrunaAI/P-Q-Image-2.1-Remove-Object",
    "Viggle/Viggle-Image-Swap",
    "Zyphra/ZONOS3-Mini",
    "adventists-ai/Sophon-Realtime-v1",
@@ -1308,6 +1309,7 @@
    "mehdi-hf/chatterbox-farsi",
    "n4ze3m/tiny-voca",
    "owensong/Inflect-Mini-v3",
+   "thejagstudio/tessera-small",
    "unsloth/MiniMax-H3-Image-FP8",
    "vyrekai/minimax-h3-image-comfyui-workflows"
   ],
@@ -1491,6 +1493,7 @@
    "https://openai.com/index/introducing-openai-for-chile",
    "https://openai.com/index/jiostar-vijay-seshadri",
    "https://openai.com/index/kuken",
+   "https://openai.com/index/le-groupe-figaro-and-openai-announce-partnership",
    "https://openai.com/index/lvmh-media-division-partnership",
    "https://openai.com/index/measuring-how-ai-agents-handle-wet-lab-science",
    "https://openai.com/index/merge-builds-with-openai",
