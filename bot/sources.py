@@ -297,6 +297,10 @@ GOOGLE_MODELS_MD = "https://aistudio.google.com/docs/models.md"
 GOOGLE_CHANGELOG_MD = "https://aistudio.google.com/docs/changelog.md"
 GOOGLE_MODELS_URL = "https://ai.google.dev/gemini-api/docs/models"
 _GOOGLE_ID = re.compile(r"`((?:gemini|imagen|veo|lyria)[a-z0-9.-]*)`")
+# Vertex AI(Gemini Enterprise Agent Platform). Veo 는 여기로만 제공된다. 모델마다 문서 페이지가 있다.
+VERTEX_MODELS_PAGE = "https://docs.cloud.google.com/gemini-enterprise-agent-platform/models/google-models"
+_VERTEX_LINK = re.compile(r'href="(?:https://docs\.cloud\.google\.com)?/gemini-enterprise-agent-platform/models/'
+                          r'((?:veo|imagen|lyria|gemini)/[a-z0-9-]+)"')
 
 
 def fetch_google() -> list[tuple[str, str, dict]]:
@@ -307,8 +311,39 @@ def fetch_google() -> list[tuple[str, str, dict]]:
     ids = set(_GOOGLE_ID.findall(r.text))
     if len(ids) < 10:
         raise RuntimeError(f"Google 모델이 {len(ids)}개만 읽힘. 페이지 구조가 바뀐 것 같음")
-    return [("google", i, {"source_label": "Gemini API 모델 목록", "title": i, "url": GOOGLE_MODELS_URL})
-            for i in sorted(ids)]
+    out = [("google", i, {"source_label": "Gemini API 모델 목록", "title": i, "url": GOOGLE_MODELS_URL})
+           for i in sorted(ids)]
+    r = requests.get(VERTEX_MODELS_PAGE, headers={"User-Agent": "Mozilla/5.0"}, timeout=60)
+    r.raise_for_status()
+    paths = set(_VERTEX_LINK.findall(r.text))
+    if len(paths) < 10:
+        raise RuntimeError(f"Vertex 모델 페이지가 {len(paths)}개만 읽힘. 페이지 구조가 바뀐 것 같음")
+    url = "https://docs.cloud.google.com/gemini-enterprise-agent-platform/models/"
+    # 같은 출처 묶음 안에서 처음 보는 표시(source_label)라 첫 회차에는 기준만 저장된다
+    out += [("google", f"vertex/{p}", {"source_label": "Vertex AI 모델 목록", "title": f"Vertex AI {p}", "url": url + p})
+            for p in sorted(paths)]
+    return out
+
+
+def vertex_info(url: str) -> dict:
+    """Vertex 모델 문서 본문 앞부분(모델 ID, 기능, 사양)과 출시일(Release date 중 가장 늦은 날짜)."""
+    try:
+        r = requests.get(url, headers={"User-Agent": "Mozilla/5.0"}, timeout=60)
+        r.raise_for_status()
+    except requests.RequestException:
+        return {}
+    m = re.search(r"(?is)<article\b.*?</article>", r.text)
+    text = " / ".join(t for t, _ in _text_blocks(m.group(0) if m else r.text, False))
+    info = {"description": text[:2500]} if text else {}
+    dates = []
+    for d in re.findall(r"Release date:\s*([A-Z][a-z]+ \d{1,2}, \d{4})", text):
+        try:
+            dates.append(datetime.strptime(d, "%B %d, %Y").replace(tzinfo=timezone.utc))
+        except ValueError:
+            pass
+    if dates:
+        info["date"] = max(dates).isoformat()
+    return info
 
 
 def google_info(model_id: str) -> dict:
