@@ -2132,6 +2132,8 @@
    "ideogram-4-0q",
    "ideogram-4-5",
    "ideogram-4-5-precise-edit",
+   "ideogram-4-6",
+   "ideogram-4-6-precise-edit",
    "ideogram-layerize-text",
    "ideogram-object-remover",
    "ideogram-remove-background",
@@ -3018,6 +3020,7 @@
    "Gemini API 종료 일정#58e1899eb4648c24",
    "Gemini API 종료 일정#5b0e00902fb2bbba",
    "Gemini API 종료 일정#5e012ff3a916a951",
+   "Gemini API 종료 일정#5e0b59ec72216ba6",
    "Gemini API 종료 일정#60acf7e0a0b5082b",
    "Gemini API 종료 일정#68a588c5f093e145",
    "Gemini API 종료 일정#7148e487ed770d42",
@@ -3541,6 +3544,11 @@
    "model_key": "genie-4",
    "source": "rss",
    "at": "2026-11-18T19:10:05.682393+00:00"
+  },
+  {
+   "model_key": "ideogram-4.6",
+   "source": "runware",
+   "at": "2026-11-19T17:10:24.364601+00:00"
   }
  ],
  "seeded_labels": [

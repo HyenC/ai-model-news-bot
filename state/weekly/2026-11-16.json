@@ -448,5 +448,42 @@
    }
   ],
   "at": "2026-11-18T19:10:06.142228+00:00"
+ },
+ {
+  "kind": "new",
+  "model_key": "ideogram-4.6",
+  "model_name": "Ideogram 4.6",
+  "maker": "Ideogram",
+  "modality": "이미지",
+  "one_liner": "Ideogram의 이미지 생성·편집 모델 새 버전",
+  "features": [
+   "텍스트→이미지, 이미지→이미지, 편집",
+   "네이티브 4K 이미지 생성",
+   "여러 이미지 기반 편집",
+   "정밀 편집(Precise Edit) 엔드포인트"
+  ],
+  "vs_previous": "캐릭터와 색상 충실도가 더 좋아졌습니다.",
+  "upcoming": false,
+  "other_availability": "",
+  "event": "Runware에 새로 등록",
+  "date": "발표일: 2026-11-19(목) · Runware 출시일 기준",
+  "platforms": {
+   "replicate": "",
+   "runware": "https://runware.ai/models/ideogram-4-6",
+   "byteplus": "",
+   "google": "",
+   "fal": ""
+  },
+  "sources": [
+   {
+    "url": "https://runware.ai/models/ideogram-4-6",
+    "title": "ideogram 4.6"
+   },
+   {
+    "url": "https://runware.ai/models/ideogram-4-6-precise-edit",
+    "title": "ideogram 4.6 precise edit"
+   }
+  ],
+  "at": "2026-11-19T17:10:24.842591+00:00"
  }
 ]
