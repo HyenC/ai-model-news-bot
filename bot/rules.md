@@ -31,11 +31,14 @@
 - features: 이 모델의 특징 2~4개. 한 항목에 한 가지 사실만, 짧게(25자 안팎). 할 수 있는 작업, 입력·출력 조건(참조 이미지 수, 해상도, 길이, 오디오 동시 생성 등), 새 기능 위주
 - vs_previous: 이전 버전이나 원래 모델과 비교해 달라진 점 한두 문장. 경량화·고속 버전이면 속도·가격·품질 차이. 후보 정보에 비교 근거가 없으면 빈 문자열로 두세요("확인 안 됨"이라고 쓰지 마세요). 메시지에서 이 항목이 빠집니다
 - upcoming: 아직 쓸 수 없고 출시 예정만 발표된 경우 true, 지금 쓸 수 있으면 false
-- other_availability: Replicate·Runware·fal.ai 말고 쓸 수 있는 곳 (예: "Hugging Face 오픈 가중치(라이선스: apache-2.0)", "Google Gemini API"). 없거나 모르면 빈 문자열
-- platforms: Replicate·Runware·fal.ai 에 이 모델이 있는지. `out/catalog.tsv` 에서 모델 이름으로 찾아(예: `grep -i seedream out/catalog.tsv`), 같은 모델·같은 버전이 있으면 그 행의 url 을, 없으면 빈 문자열을 넣습니다. 비슷한 이전 버전(예: 5.5 를 찾는데 5.0 만 있음)은 없는 것으로 봅니다. url 은 catalog 에 있는 값을 그대로 복사하세요
+- other_availability: Replicate·Runware·BytePlus·Google·fal.ai 말고 쓸 수 있는 곳 (예: "Hugging Face 오픈 가중치(라이선스: apache-2.0)", "Alibaba Cloud Model Studio API"). 없거나 모르면 빈 문자열
+- platforms: Replicate·Runware·BytePlus·Google(Gemini API)·fal.ai 에 이 모델이 있는지. `out/catalog.tsv` 에서 모델 이름으로 찾아(예: `grep -i seedream out/catalog.tsv`), 같은 모델·같은 버전이 있으면 그 행의 url 을, 없으면 빈 문자열을 넣습니다. 비슷한 이전 버전(예: 5.5 를 찾는데 5.0 만 있음)은 없는 것으로 봅니다. url 은 catalog 에 있는 값을 그대로 복사하세요
+  - BytePlus 는 모델 ID 가 `dreamina-seedance-2-5-flash-261115` 처럼 하이픈과 끝의 버전 날짜로 되어 있습니다. `grep -i 'seedance-2-5' out/catalog.tsv` 처럼 찾습니다. ID 안의 이름이 같은 모델·같은 버전일 때만 있는 것으로 봅니다(2-5 와 2-5-flash 는 다른 모델).
+  - Google 은 `gemini-3.1-flash-image` 처럼 Gemini API 모델 ID 로 되어 있습니다. Gemini API 모델 목록에서 온 후보(source=google)의 description 은 Gemini API 변경 기록에서 그 ID 가 나온 문단입니다(없으면 비어 있음). Google 은 제품 이름과 ID 가 다를 수 있습니다(예: Nano Banana 계열은 `gemini-...-image`). 같은 모델이라는 근거가 후보 정보에 있을 때만 있는 것으로 봅니다.
+  - BytePlus 모델 목록에서 온 후보(source=byteplus)의 description 은 그 모델 시리즈의 BytePlus 문서 본문입니다. 시리즈 안 다른 모델(예: Seedance 2.5 와 2.5 flash)의 내용이 섞여 있을 수 있으니, 후보 ID 의 모델에 해당한다고 문서에 나온 사실만 씁니다.
 
 ## out/verdicts.json 형식
-후보 하나당 항목 하나. relevant=false 면 문자열 필드는 빈 문자열, features 는 빈 목록, upcoming 은 false, platforms 는 세 값 모두 빈 문자열, modality 는 "해당 없음".
+후보 하나당 항목 하나. relevant=false 면 문자열 필드는 빈 문자열, features 는 빈 목록, upcoming 은 false, platforms 는 다섯 값 모두 빈 문자열, modality 는 "해당 없음".
 ```json
 {"items": [
   {"id": "fal:bytedance/seedream/v5.5/text-to-image", "relevant": true,
@@ -46,10 +49,10 @@
    "vs_previous": "",
    "upcoming": false,
    "other_availability": "",
-   "platforms": {"replicate": "", "runware": "https://runware.ai/models/bytedance-seedream-5-5", "fal": "https://fal.ai/models/bytedance/seedream/v5.5/text-to-image"}},
+   "platforms": {"replicate": "", "runware": "https://runware.ai/models/bytedance-seedream-5-5", "byteplus": "", "google": "", "fal": "https://fal.ai/models/bytedance/seedream/v5.5/text-to-image"}},
   {"id": "rss:https://...", "relevant": false, "model_key": "", "model_name": "", "maker": "",
    "modality": "해당 없음", "one_liner": "", "features": [], "vs_previous": "", "upcoming": false, "other_availability": "",
-   "platforms": {"replicate": "", "runware": "", "fal": ""}}
+   "platforms": {"replicate": "", "runware": "", "byteplus": "", "google": "", "fal": ""}}
 ]}
 ```
 

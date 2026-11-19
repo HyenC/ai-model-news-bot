@@ -42,7 +42,7 @@ def weeks() -> tuple[str, str, str]:
 
 
 def build_catalog() -> None:
-    """Replicate·Runware·fal.ai 의 지금 모델 목록. 데일리 기록(state)은 건드리지 않는다."""
+    """Replicate·Runware·BytePlus·Google·fal.ai 의 지금 모델 목록. 데일리 기록(state)은 건드리지 않는다."""
     rows, ok = [], {}
     for name in PLATFORMS:
         try:

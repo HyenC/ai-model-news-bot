@@ -16,7 +16,7 @@ from common import (
     CANDIDATES_PATH, CATALOG_PATH, CATALOG_STATUS_PATH, PENDING_PATH, RETIREMENTS_PATH,
     load_state, save_state, write_json,
 )
-from sources import NEEDS_DESCRIPTION, PLATFORMS, RETIRE_SOURCES, SOURCES, page_info
+from sources import NEEDS_DESCRIPTION, PLATFORMS, RETIRE_SOURCES, SOURCES, byteplus_info, google_info, page_info
 
 # 한 소스에서 한꺼번에 이만큼 넘게 '새 항목'이 나오면 소스 쪽 변경(ID 체계 변경 등)으로 보고
 # 보내지 않고 기준만 다시 잡는다. 채널 도배 방지용.
@@ -107,6 +107,10 @@ def main() -> None:
             if name in NEEDS_DESCRIPTION and not (p.get("description") and p.get("date")):
                 for k, val in page_info(p["url"]).items():
                     p[k] = p.get(k) or val
+            if name == "byteplus":  # 모델 목록에는 ID 뿐이라, 그 모델의 BytePlus 문서 본문을 붙인다
+                p.update(byteplus_info(iid))
+            if name == "google":  # Gemini API 모델 목록도 ID 뿐이라, 변경 기록에서 그 모델 문단과 날짜를 붙인다
+                p.update(google_info(iid))
             if _too_old(name, p.get("date"), now_dt):
                 print(f"[{name}] 지난 소식이라 제외 ({str(p.get('date'))[:10]}): {p['url']}")
                 continue

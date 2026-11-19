@@ -81,6 +81,8 @@ EVENT_LABEL = {
     "fal": "fal.ai에 새로 등록",
     "replicate": "Replicate에 새로 등록",
     "runware": "Runware에 새로 등록",
+    "byteplus": "BytePlus에 새로 등록",
+    "google": "Google Gemini API에 새로 등록",
     "hf": "Hugging Face에 공개",
 }
 
@@ -88,7 +90,7 @@ EVENT_LABEL = {
 KST = timezone(timedelta(hours=9))
 WEEKDAYS = "월화수목금토일"
 DATE_BASIS = {
-    "fal": "fal.ai 등록일", "replicate": "Replicate 등록일", "runware": "Runware 출시일",
+    "fal": "fal.ai 등록일", "replicate": "Replicate 등록일", "runware": "Runware 출시일", "google": "Gemini API 변경 기록",
     "hf": "Hugging Face 공개일", "rss": "공식 글 게시일", "blog": "공식 글 게시일",
 }
 
@@ -127,7 +129,7 @@ def date_line(group: list[dict]) -> str:
     return f"발표일: {d:%Y-%m-%d}({WEEKDAYS[d.weekday()]}) · {basis} 기준"
 
 
-SUPPLIERS = ("replicate", "runware")  # 우리가 API를 가져오는 곳. 첫 소식 뒤에도 새로 등록되면 한 줄로 알린다
+SUPPLIERS = ("replicate", "runware", "byteplus", "google")  # 우리가 API를 가져오는 곳. 첫 소식 뒤에도 새로 등록되면 한 줄로 알린다
 
 
 def merged_platforms(group: list[dict]) -> dict[str, str]:

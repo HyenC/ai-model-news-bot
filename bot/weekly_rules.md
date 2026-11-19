@@ -10,7 +10,7 @@
 - LLM, 음성 인식, 3D 전용, 개인 파인튜닝·LoRA, 비공식 경량화는 넣지 않습니다.
 
 ## 2. 새 모델 5개 고르기 (위일수록 중요)
-1. 우리 공급처(Replicate·Runware)에 이미 올라와 바로 붙일 수 있는 모델
+1. 우리 공급처(Replicate·Runware·BytePlus·Google)에 이미 올라와 바로 붙일 수 있는 모델
 2. 주요 회사(Google, OpenAI, ByteDance, Kuaishou(Kling), Alibaba(Qwen·Wan), Black Forest Labs, Runway, Luma, MiniMax, xAI, ElevenLabs, Meta 등)의 대표 모델 새 버전
 3. 완전히 새로운 기능(새 입력·출력 방식, 오디오 동시 생성, 긴 길이 등)을 가진 모델
 
@@ -40,6 +40,8 @@
 - **API:** <제공처>. [API 문서](url)
 - **Replicate:** 제공. [모델 페이지](url)
 - **Runware:** 제공. [모델 페이지](url)
+- **BytePlus:** 제공. [모델 목록](url)
+- **Google:** 제공. [모델 목록](url)
 - **fal:** 제공. [모델 페이지](url)
 - **<제공 안 되는 플랫폼들>:** 제공 확인되지 않음.
 ```

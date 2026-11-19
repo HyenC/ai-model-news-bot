@@ -67,6 +67,7 @@ BLOG_PAGES = {
     "Recraft": ("https://www.recraft.ai/blog", "/blog/"),
     "Lightricks (LTX)": ("https://ltx.io/blog", "/blog/"),
     "Suno": ("https://suno.com/blog", "/blog/"),
+    "BytePlus 블로그": ("https://www.byteplus.com/en/blog", "/blog/"),
 }
 
 # 모델 제공 종료(deprecation)를 미리 공지하는 페이지.
@@ -225,6 +226,109 @@ def fetch_replicate() -> list[tuple[str, str, dict]]:
     }) for s in slugs]
 
 
+BYTEPLUS_DOCS = "https://docs.byteplus.com/en/docs/ModelArk/"
+BYTEPLUS_MODEL_LIST = BYTEPLUS_DOCS + "model-list"
+_BP_INSERT = re.compile(r'\\"insert\\":\\"((?:[^"\\]|\\\\[^"]|\\\\\\")*?)\\"')
+_BP_ID = re.compile(r"^[a-z][a-z0-9-]*-2\d{5}$")  # 모델 ID 는 끝에 출시 버전 날짜(YYMMDD)가 붙는다
+_BP_DOC_CODE = re.compile(r'"DocumentCode":"([a-z0-9-]+)"')
+_bp_doc_codes: set[str] = set()  # 문서 목차의 페이지 주소들. fetch_byteplus 가 채운다
+
+
+def _bp_text(page_html: str) -> list[str]:
+    """BytePlus 문서 페이지 본문 조각들 (문서가 편집기 데이터로 들어 있다)."""
+    return [x.replace("\\\\n", "\n").replace("\\\\u002F", "/").strip() for x in _BP_INSERT.findall(page_html)]
+
+
+def fetch_byteplus() -> list[tuple[str, str, dict]]:
+    """BytePlus ModelArk 문서의 모델 목록. 우리와 계약한 공급처라 여기 올라오면 바로 붙일 수 있다.
+    목록에는 LLM 도 섞여 있다(판단 단계에서 거른다). 출시 날짜 정보가 없어 date 는 넣지 않는다."""
+    r = requests.get(BYTEPLUS_MODEL_LIST, headers={"User-Agent": "Mozilla/5.0"}, timeout=60)
+    r.raise_for_status()
+    ids = {t for t in _bp_text(r.text) if _BP_ID.match(t)}
+    if len(ids) < 10:
+        raise RuntimeError(f"BytePlus 모델이 {len(ids)}개만 읽힘. 페이지 구조가 바뀐 것 같음")
+    _bp_doc_codes.clear()
+    _bp_doc_codes.update(_BP_DOC_CODE.findall(r.text))
+    return [("byteplus", i, {
+        "source_label": "BytePlus 모델 목록",
+        "title": i,
+        "url": BYTEPLUS_MODEL_LIST,
+    }) for i in sorted(ids)]
+
+
+def byteplus_info(model_id: str) -> dict:
+    """새 BytePlus 모델 ID 에 맞는 문서(튜토리얼·모델 소개) 본문 앞부분을 description 으로 붙인다.
+    예: dreamina-seedance-2-5-flash-261115 -> seedance-2-5-flash -> seedance-2-5 문서. 못 찾으면 빈 dict."""
+    base = re.sub(r"-2\d{5}$", "", model_id)
+    base = re.sub(r"^(dreamina|dola|bytedance)-", "", base)
+    parts = base.split("-")
+    code = None
+    while parts and any(ch.isdigit() for ch in "-".join(parts)):
+        c = "-".join(parts)
+        for cand in (c, f"recommended-models-{c}", model_id.rsplit("-", 1)[0]):
+            if cand in _bp_doc_codes:
+                code = cand
+                break
+        if code:
+            break
+        # 시리즈 문서가 다른 이름일 때 (예: seedream-5-0-flash -> seedream-5-0-pro 문서가 pro/flash 를 함께 다룸)
+        # 버전 숫자는 바꾸지 않는다: 붙는 쪽에 숫자가 있으면 다른 버전 문서라 쓰지 않는다
+        near = sorted((d for d in _bp_doc_codes if d.startswith(c + "-")
+                       and not any(ch.isdigit() for ch in d[len(c):])
+                       and not re.search(r"guide|prompt|purchase|discount|resource|refund|rule", d)), key=len)
+        if near:
+            code = near[0]
+            break
+        if parts[-1].isdigit() or any(ch.isdigit() for ch in parts[-1]):
+            break  # 버전 숫자까지 지우면 다른 버전 문서가 걸리므로 여기서 멈춘다
+        parts.pop()
+    if not code:
+        return {}
+    try:
+        r = requests.get(BYTEPLUS_DOCS + code, headers={"User-Agent": "Mozilla/5.0"}, timeout=60)
+        r.raise_for_status()
+    except requests.RequestException:
+        return {}
+    text = "\n".join(t for t in _bp_text(r.text) if len(t) > 1)
+    return {"description": html_lib.unescape(text)[:3000], "doc_url": BYTEPLUS_DOCS + code} if text else {}
+
+
+GOOGLE_MODELS_MD = "https://aistudio.google.com/docs/models.md"
+GOOGLE_CHANGELOG_MD = "https://aistudio.google.com/docs/changelog.md"
+GOOGLE_MODELS_URL = "https://ai.google.dev/gemini-api/docs/models"
+_GOOGLE_ID = re.compile(r"`((?:gemini|imagen|veo|lyria)[a-z0-9.-]*)`")
+
+
+def fetch_google() -> list[tuple[str, str, dict]]:
+    """Gemini API 모델 목록. 우리와 직접 연동하는 곳이라 여기 올라오면 바로 붙일 수 있다.
+    LLM 도 섞여 있다(판단 단계에서 거른다)."""
+    r = requests.get(GOOGLE_MODELS_MD, headers={"User-Agent": "Mozilla/5.0"}, timeout=60)
+    r.raise_for_status()
+    ids = set(_GOOGLE_ID.findall(r.text))
+    if len(ids) < 10:
+        raise RuntimeError(f"Google 모델이 {len(ids)}개만 읽힘. 페이지 구조가 바뀐 것 같음")
+    return [("google", i, {"source_label": "Gemini API 모델 목록", "title": i, "url": GOOGLE_MODELS_URL})
+            for i in sorted(ids)]
+
+
+def google_info(model_id: str) -> dict:
+    """새 Google 모델 ID 가 나온 Gemini API 변경 기록 문단과 그 날짜. 못 찾으면 빈 dict."""
+    try:
+        r = requests.get(GOOGLE_CHANGELOG_MD, headers={"User-Agent": "Mozilla/5.0"}, timeout=60)
+        r.raise_for_status()
+    except requests.RequestException:
+        return {}
+    for text, heading in _text_blocks(r.text, markdown=True):
+        if f"`{model_id}`" in text or model_id in text.split():
+            info = {"description": text[:1500]}
+            try:
+                info["date"] = datetime.strptime(heading.strip(), "%B %d, %Y").replace(tzinfo=timezone.utc).isoformat()
+            except ValueError:
+                pass
+            return info
+    return {}
+
+
 def _feed_date(e) -> str | None:
     t = e.get("published_parsed") or e.get("updated_parsed")
     return datetime(*t[:6], tzinfo=timezone.utc).isoformat() if t else None
@@ -291,7 +395,10 @@ def fetch_blogs() -> list[tuple[str, str, dict]]:
         host = urlparse(page).netloc.removeprefix("www.")
         page_path = urlparse(page).path.rstrip("/")
         links = set()
-        for href in re.findall(r'href="([^"#?]+)"', r.text):
+        # BytePlus 블로그는 링크 끝에 '?' 가 붙어 있다. 다른 블로그는 기존 기준을 유지한다(새 링크가 한꺼번에 잡히지 않도록).
+        href_re = r'href="([^"#?]+)\??"' if "byteplus.com" in page else r'href="([^"#?]+)"'
+        for href in re.findall(href_re, r.text):
+            href = href.replace(" ", "%20")
             u = urlparse(urljoin(page, href))
             if not u.netloc.removeprefix("www.").endswith(host) or prefix not in u.path:
                 continue
@@ -401,11 +508,11 @@ def fetch_deprecations() -> list[tuple[str, str, dict]]:
 NEEDS_DESCRIPTION = {"replicate", "runware", "blog"}
 
 SOURCES = {
-    "fal": fetch_fal, "replicate": fetch_replicate, "runware": fetch_runware,
+    "fal": fetch_fal, "replicate": fetch_replicate, "runware": fetch_runware, "byteplus": fetch_byteplus, "google": fetch_google,
     "hf": fetch_hf, "rss": fetch_rss, "blog": fetch_blogs,
     "fal_retire": fetch_fal_retiring, "deprecation": fetch_deprecations,
 }
 # 제공 종료 공지 소스. 새 모델 후보와 따로 판단한다(out/retirements.json).
 RETIRE_SOURCES = {"fal_retire", "deprecation"}
 # 알림마다 '여기서 쓸 수 있는지'를 표시할 플랫폼
-PLATFORMS = {"replicate": "Replicate", "runware": "Runware", "fal": "fal.ai"}
+PLATFORMS = {"replicate": "Replicate", "runware": "Runware", "byteplus": "BytePlus", "google": "Google", "fal": "fal.ai"}
