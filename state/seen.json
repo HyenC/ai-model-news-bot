@@ -1493,6 +1493,7 @@
    "https://openai.com/business/customer-stories/sumitomo-life",
    "https://openai.com/business/learn/codex-security-plugin-demo",
    "https://openai.com/business/learn/daybreak-blue-onboarding-demo",
+   "https://openai.com/business/learn/deploying-daybreak-red",
    "https://openai.com/business/learn/pr-scans-demo",
    "https://openai.com/index/a-thousand-fewer-paths-to-root",
    "https://openai.com/index/advancing-chip-design-with-our-models",
@@ -1762,6 +1763,8 @@
    "ibm-granite/granite-vision-4.1-4b",
    "ideogram-ai/ideogram-4-5",
    "ideogram-ai/ideogram-4-5-precise-edit",
+   "ideogram-ai/ideogram-4-6",
+   "ideogram-ai/ideogram-4-6-precise-edit",
    "ideogram-ai/ideogram-character",
    "ideogram-ai/ideogram-v2",
    "ideogram-ai/ideogram-v2-turbo",
@@ -3560,6 +3563,11 @@
    "model_key": "ideogram-4.6",
    "source": "runware",
    "at": "2026-11-19T17:10:24.364601+00:00"
+  },
+  {
+   "model_key": "ideogram-4.6",
+   "source": "replicate",
+   "at": "2026-11-20T01:10:15.887581+00:00"
   }
  ],
  "seeded_labels": [

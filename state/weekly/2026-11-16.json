@@ -485,5 +485,14 @@
    }
   ],
   "at": "2026-11-19T17:10:24.842591+00:00"
+ },
+ {
+  "kind": "followup",
+  "model_key": "ideogram-4.6",
+  "model_name": "Ideogram 4.6",
+  "platforms": {
+   "replicate": "https://replicate.com/ideogram-ai/ideogram-4-6"
+  },
+  "at": "2026-11-20T01:10:16.444038+00:00"
  }
 ]
