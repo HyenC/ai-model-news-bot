@@ -1311,6 +1311,9 @@
    "inclusionAI/Duo-1.0-distill",
    "inclusionAI/Duo-1.0-distill-quant",
    "inclusionAI/Duo-1.2-causal-base",
+   "kyutai/AURA-1.3B",
+   "kyutai/AURA-1.3B-Teacher-TalkVerse",
+   "kyutai/AURA-5B",
    "linlinlinlinsdada/Jeveration",
    "localai0301/Anima-RGBA",
    "maya-research/maya2-native",
@@ -3580,6 +3583,11 @@
    "model_key": "ideogram-4.6",
    "source": "replicate",
    "at": "2026-11-20T01:10:15.887581+00:00"
+  },
+  {
+   "model_key": "aura",
+   "source": "hf",
+   "at": "2026-11-20T15:11:45.178724+00:00"
   }
  ],
  "seeded_labels": [

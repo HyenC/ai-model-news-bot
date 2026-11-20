@@ -494,5 +494,45 @@
    "replicate": "https://replicate.com/ideogram-ai/ideogram-4-6"
   },
   "at": "2026-11-20T01:10:16.444038+00:00"
+ },
+ {
+  "kind": "new",
+  "model_key": "aura",
+  "model_name": "AURA (1.3B·5B)",
+  "maker": "Kyutai",
+  "modality": "영상",
+  "one_liner": "오디오 기반 토킹헤드 아바타 영상 생성 모델",
+  "features": [
+   "음성 입력으로 인물 이미지 말하게 하기",
+   "이미지→영상 토킹헤드 생성",
+   "Wan2.1-T2V-1.3B 기반 어댑터"
+  ],
+  "vs_previous": "",
+  "upcoming": false,
+  "other_availability": "Hugging Face 오픈 가중치(라이선스: cc-by-nc-4.0)",
+  "event": "Hugging Face에 공개",
+  "date": "발표일: 2026-11-19(목) · Hugging Face 공개일 기준",
+  "platforms": {
+   "replicate": "",
+   "runware": "",
+   "byteplus": "",
+   "google": "",
+   "fal": ""
+  },
+  "sources": [
+   {
+    "url": "https://huggingface.co/kyutai/AURA-1.3B-Teacher-TalkVerse",
+    "title": "kyutai/AURA-1.3B-Teacher-TalkVerse"
+   },
+   {
+    "url": "https://huggingface.co/kyutai/AURA-1.3B",
+    "title": "kyutai/AURA-1.3B"
+   },
+   {
+    "url": "https://huggingface.co/kyutai/AURA-5B",
+    "title": "kyutai/AURA-5B"
+   }
+  ],
+  "at": "2026-11-20T15:11:45.645957+00:00"
  }
 ]
