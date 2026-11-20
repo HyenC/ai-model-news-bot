@@ -1290,6 +1290,7 @@
    "LiquidAI/LFM3-Omni-2B-GGUF",
    "Lyricccco/Qwen-Image-2.1-TailSteer",
    "MiniMaxAI/MiniMax-H3-Image",
+   "Nebsh/Seedreamstyle-H3-6K",
    "Oomni/mithi-v1-flash",
    "Pika-Labs/Pika-H3-Flex",
    "Pika-Labs/Pika-H3-Flex-Turbo-LoRA",
@@ -2967,7 +2968,11 @@
    "fal-ai/wan/v2.2-a14b/text-to-video/lora@2027-01-04",
    "fal-ai/wan/v2.2-a14b/text-to-video/turbo@2027-01-04",
    "fal-ai/wan/v2.2-a14b/text-to-video@2027-01-04",
-   "fal-ai/wan/v2.2-a14b/video-to-video@2027-01-04"
+   "fal-ai/wan/v2.2-a14b/video-to-video@2027-01-04",
+   "moonvalley/marey/i2v@2026-11-30",
+   "moonvalley/marey/motion-transfer@2026-11-30",
+   "moonvalley/marey/pose-transfer@2026-11-30",
+   "moonvalley/marey/t2v@2026-11-30"
   ],
   "deprecation": [
    "ElevenLabs 변경 기록#02bd4c229dfe3c43",
