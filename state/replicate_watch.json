@@ -1,5 +1,5 @@
 {
- "checked": "2026-11-19",
+ "checked": "2026-11-20",
  "models": {
   "alibaba/happyhorse-1.0": {
    "price": {
@@ -19562,19 +19562,19 @@
   "prunaai/p-video-2-pro-replace": {
    "price": {
     "target resolution=480p": [
-     "$0.025 per second of output video"
-    ],
-    "target resolution=768p": [
      "$0.05 per second of output video"
     ],
+    "target resolution=768p": [
+     "$0.10 per second of output video"
+    ],
     "target resolution=1080p": [
-     "$0.06 per second of output video"
+     "$0.12 per second of output video"
     ],
     "target resolution=2k": [
-     "$0.07 per second of output video"
+     "$0.14 per second of output video"
     ],
     "target resolution=4k": [
-     "$0.09 per second of output video"
+     "$0.18 per second of output video"
     ]
    },
    "options": {
