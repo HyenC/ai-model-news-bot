@@ -1,5 +1,5 @@
 {
- "checked": "2026-11-20",
+ "checked": "2026-11-21",
  "models": {
   "alibaba/happyhorse-1.0": {
    "price": {
@@ -26649,6 +26649,199 @@
     "text_normalization": {
      "type": "boolean",
      "default": false
+    }
+   }
+  },
+  "ideogram-ai/ideogram-4-6": {
+   "price": {
+    "model variant=very_low-2k": [
+     "$8 per thousand output images"
+    ],
+    "model variant=low-2k": [
+     "$0.03 per output image"
+    ],
+    "model variant=medium-2k": [
+     "$0.06 per output image"
+    ],
+    "model variant=high-2k": [
+     "$0.10 per output image"
+    ],
+    "model variant=low-4k": [
+     "$0.06 per output image"
+    ],
+    "model variant=medium-4k": [
+     "$0.12 per output image"
+    ],
+    "model variant=high-4k": [
+     "$0.20 per output image"
+    ],
+    "model variant=very_low-2k-with-source-images": [
+     "$8 per thousand output images"
+    ],
+    "model variant=low-2k-with-source-images": [
+     "$0.03 per output image"
+    ],
+    "model variant=medium-2k-with-source-images": [
+     "$0.06 per output image"
+    ],
+    "model variant=high-2k-with-source-images": [
+     "$0.22 per output image"
+    ],
+    "model variant=low-4k-with-source-images": [
+     "$0.06 per output image"
+    ],
+    "model variant=medium-4k-with-source-images": [
+     "$0.20 per output image"
+    ],
+    "model variant=high-4k-with-source-images": [
+     "$0.60 per output image"
+    ]
+   },
+   "options": {
+    "mask": {
+     "type": "string"
+    },
+    "seed": {
+     "type": "integer",
+     "maximum": 2147483647
+    },
+    "size": {
+     "type": "string",
+     "enum": [
+      "auto",
+      "auto_2k",
+      "auto_4k",
+      "source",
+      "1024x1024",
+      "2048x2048",
+      "1440x2880",
+      "2880x1440",
+      "1664x2496",
+      "2496x1664",
+      "1792x2240",
+      "2240x1792",
+      "1440x2560",
+      "2560x1440",
+      "1600x2560",
+      "2560x1600",
+      "1728x2304",
+      "2304x1728",
+      "1280x3136",
+      "3136x1280",
+      "1152x2944",
+      "2944x1152",
+      "1248x3328",
+      "3328x1248",
+      "1280x3072",
+      "3072x1280",
+      "4096x4096",
+      "2880x5760",
+      "5760x2880",
+      "3328x4992",
+      "4992x3328",
+      "3584x4480",
+      "4480x3584",
+      "2880x5120",
+      "5120x2880",
+      "3200x5120",
+      "5120x3200",
+      "3456x4608",
+      "4608x3456",
+      "2560x6272",
+      "6272x2560",
+      "2304x5888",
+      "5888x2304",
+      "2496x6656",
+      "6656x2496",
+      "2560x6144",
+      "6144x2560"
+     ],
+     "default": "auto"
+    },
+    "images": {
+     "type": "array"
+    },
+    "prompt": {
+     "type": "string"
+    },
+    "quality": {
+     "type": "string",
+     "enum": [
+      "very_low",
+      "low",
+      "medium",
+      "high"
+     ],
+     "default": "medium"
+    },
+    "num_images": {
+     "type": "integer",
+     "default": 1,
+     "minimum": 1,
+     "maximum": 8
+    }
+   }
+  },
+  "ideogram-ai/ideogram-4-6-precise-edit": {
+   "price": {
+    "model variant=very_low-2k": [
+     "$8 per thousand output images"
+    ],
+    "model variant=low-2k": [
+     "$0.03 per output image"
+    ],
+    "model variant=medium-2k": [
+     "$0.06 per output image"
+    ],
+    "model variant=high-2k": [
+     "$0.22 per output image"
+    ],
+    "model variant=low-4k": [
+     "$0.06 per output image"
+    ],
+    "model variant=medium-4k": [
+     "$0.20 per output image"
+    ],
+    "model variant=high-4k": [
+     "$0.60 per output image"
+    ]
+   },
+   "options": {
+    "mask": {
+     "type": "string"
+    },
+    "seed": {
+     "type": "integer",
+     "maximum": 2147483647
+    },
+    "image": {
+     "type": "string"
+    },
+    "prompt": {
+     "type": "string"
+    },
+    "quality": {
+     "type": "string",
+     "enum": [
+      "very_low",
+      "low",
+      "medium",
+      "high"
+     ],
+     "default": "medium"
+    },
+    "num_images": {
+     "type": "integer",
+     "default": 1,
+     "minimum": 1,
+     "maximum": 8
+    },
+    "context_window": {
+     "type": "string",
+     "default": "auto"
+    },
+    "reference_images": {
+     "type": "array"
     }
    }
   }
