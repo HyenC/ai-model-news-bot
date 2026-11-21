@@ -534,5 +534,38 @@
    }
   ],
   "at": "2026-11-20T15:11:45.645957+00:00"
+ },
+ {
+  "kind": "new",
+  "model_key": "lilipixel-v1-190m",
+  "model_name": "LiliPixel V1 190M",
+  "maker": "Pinkstack",
+  "modality": "이미지",
+  "one_liner": "픽셀 아트·스프라이트 전용 소형 텍스트→이미지 모델",
+  "features": [
+   "텍스트→픽셀 아트 이미지",
+   "16·32·64픽셀 스프라이트 출력",
+   "190M 파라미터 디퓨전 트랜스포머",
+   "플로우 매칭 방식"
+  ],
+  "vs_previous": "",
+  "upcoming": false,
+  "other_availability": "Hugging Face 오픈 가중치",
+  "event": "Hugging Face에 공개",
+  "date": "발표일: 2026-11-20(금) · Hugging Face 공개일 기준",
+  "platforms": {
+   "replicate": "",
+   "runware": "",
+   "byteplus": "",
+   "google": "",
+   "fal": ""
+  },
+  "sources": [
+   {
+    "url": "https://huggingface.co/Pinkstack/LiliPixel-V1-190M",
+    "title": "Pinkstack/LiliPixel-V1-190M"
+   }
+  ],
+  "at": "2026-11-21T21:10:17.897504+00:00"
  }
 ]

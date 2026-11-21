@@ -1294,6 +1294,7 @@
    "Oomni/mithi-v1-flash",
    "Pika-Labs/Pika-H3-Flex",
    "Pika-Labs/Pika-H3-Flex-Turbo-LoRA",
+   "Pinkstack/LiliPixel-V1-190M",
    "PrunaAI/P-H3-Image",
    "PrunaAI/P-H3-Image-Comfy",
    "PrunaAI/P-Q-Image-2.1-Remove-Object",
@@ -3598,6 +3599,11 @@
    "model_key": "aura",
    "source": "hf",
    "at": "2026-11-20T15:11:45.178724+00:00"
+  },
+  {
+   "model_key": "lilipixel-v1-190m",
+   "source": "hf",
+   "at": "2026-11-21T21:10:17.645037+00:00"
   }
  ],
  "seeded_labels": [
