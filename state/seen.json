@@ -1332,7 +1332,8 @@
    "thejagstudio/tessera-small",
    "unsloth/MiniMax-H3-Image-FP8",
    "unsloth/MiniMax-H3-Image-GGUF",
-   "vyrekai/minimax-h3-image-comfyui-workflows"
+   "vyrekai/minimax-h3-image-comfyui-workflows",
+   "yunyangge/MovieRoll"
   ],
   "rss": [
    "https://blog.fal.ai/building-long-term-trust-in-a-world-where-creation-moves-at-the-speed-of-thought/",
@@ -1516,6 +1517,7 @@
    "https://openai.com/business/customer-stories/shield",
    "https://openai.com/business/customer-stories/sumitomo-life",
    "https://openai.com/business/learn/codex-security-plugin-demo",
+   "https://openai.com/business/learn/connected-intelligence-for-in-house-legal",
    "https://openai.com/business/learn/daybreak-blue-onboarding-demo",
    "https://openai.com/business/learn/deploying-daybreak-red",
    "https://openai.com/business/learn/pr-scans-demo",
@@ -2305,6 +2307,7 @@
    "sourceful-riverflow-2-0-pro",
    "sourceful-riverflow-2-5-fast",
    "sourceful-riverflow-2-5-pro",
+   "stabilityai-stable-diffusion-3",
    "stabilityai-stable-diffusion-xl-v1-0-vae-fix",
    "sync-3",
    "sync-lipsync-2",
