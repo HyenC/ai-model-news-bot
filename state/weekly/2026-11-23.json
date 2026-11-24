@@ -31,5 +31,38 @@
    }
   ],
   "at": "2026-11-24T00:09:59.181930+00:00"
+ },
+ {
+  "kind": "new",
+  "model_key": "seed-tts-3.0",
+  "model_name": "Seed TTS 3.0",
+  "maker": "ByteDance",
+  "modality": "오디오",
+  "one_liner": "ByteDance의 다국어 텍스트→음성(TTS) 모델 새 버전",
+  "features": [
+   "다국어 음성 합성",
+   "음성(보이스) 선택 가능",
+   "자연어 지시로 말투 조절",
+   "속도·음높이·볼륨 조절"
+  ],
+  "vs_previous": "",
+  "upcoming": false,
+  "other_availability": "",
+  "event": "fal.ai에 새로 등록",
+  "date": "발표일: 2026-11-25(수) · fal.ai 등록일 기준",
+  "platforms": {
+   "replicate": "",
+   "runware": "",
+   "byteplus": "",
+   "google": "",
+   "fal": "https://fal.ai/models/bytedance/seed-tts/v3"
+  },
+  "sources": [
+   {
+    "url": "https://fal.ai/models/bytedance/seed-tts/v3",
+    "title": "Seed TTS 3.0"
+   }
+  ],
+  "at": "2026-11-24T19:09:51.374239+00:00"
  }
 ]

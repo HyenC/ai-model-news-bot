@@ -87,6 +87,7 @@
    "bria/video/increase-resolution",
    "bytedance/omnihuman/v2",
    "bytedance/seed-audio-1.0",
+   "bytedance/seed-tts/v3",
    "bytedance/seedance-2.0/fast/image-to-video",
    "bytedance/seedance-2.0/fast/reference-to-video",
    "bytedance/seedance-2.0/fast/text-to-video",
@@ -1550,6 +1551,7 @@
    "https://openai.com/index/gilbert-tobin-sam-nickless",
    "https://openai.com/index/helping-caregivers-use-ai-in-everyday-life",
    "https://openai.com/index/how-openai-performance-factory-keeps-chatgpt-fast",
+   "https://openai.com/index/ifood",
    "https://openai.com/index/inside-the-codex-sandbox",
    "https://openai.com/index/introducing-businesses-chatgpt",
    "https://openai.com/index/introducing-chatgpt-for-sales",
@@ -3662,6 +3664,11 @@
    "model_key": "recraft-vectorize-pro",
    "source": "fal",
    "at": "2026-11-24T00:09:58.779799+00:00"
+  },
+  {
+   "model_key": "seed-tts-3.0",
+   "source": "fal",
+   "at": "2026-11-24T19:09:50.989371+00:00"
   }
  ],
  "seeded_labels": [
