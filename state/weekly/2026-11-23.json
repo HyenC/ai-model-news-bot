@@ -1,0 +1,35 @@
+[
+ {
+  "kind": "new",
+  "model_key": "recraft-vectorize-pro",
+  "model_name": "Recraft Vectorize Pro",
+  "maker": "Recraft",
+  "modality": "이미지",
+  "one_liner": "래스터 이미지를 편집 가능한 SVG 벡터로 변환하는 모델",
+  "features": [
+   "래스터 이미지 → SVG 벡터 변환",
+   "편집 가능한 SVG 출력",
+   "날카로운 모서리·직선 보존",
+   "부드러운 곡선 유지"
+  ],
+  "vs_previous": "",
+  "upcoming": false,
+  "other_availability": "",
+  "event": "fal.ai에 새로 등록",
+  "date": "",
+  "platforms": {
+   "replicate": "",
+   "runware": "",
+   "byteplus": "",
+   "google": "",
+   "fal": "https://fal.ai/models/recraft/vectorize/pro"
+  },
+  "sources": [
+   {
+    "url": "https://fal.ai/models/recraft/vectorize/pro",
+    "title": "Recraft Vectorize Pro"
+   }
+  ],
+  "at": "2026-11-24T00:09:59.181930+00:00"
+ }
+]

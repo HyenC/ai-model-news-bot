@@ -1200,6 +1200,7 @@
    "recraft/v4/style/pro/text-to-vector",
    "recraft/v4/style/text-to-image",
    "recraft/v4/style/text-to-vector",
+   "recraft/vectorize/pro",
    "resemble-ai/chatterboxhd/text-to-speech",
    "rundiffusion-fal/juggernaut-flux/base",
    "rundiffusion-fal/juggernaut-flux/base/image-to-image",
@@ -3650,6 +3651,11 @@
    "model_key": "lilipixel-v1-190m",
    "source": "hf",
    "at": "2026-11-21T21:10:17.645037+00:00"
+  },
+  {
+   "model_key": "recraft-vectorize-pro",
+   "source": "fal",
+   "at": "2026-11-24T00:09:58.779799+00:00"
   }
  ],
  "seeded_labels": [
