@@ -135,7 +135,7 @@ def format_digest(week: list[str], digest: dict) -> str:
             # 슬랙이 "fal.ai" 같은 글자를 자동 링크로 만들지 않게 점 앞에 폭 없는 공백을 넣는다
             lines.append("제공: " + it["available"].strip().replace(".", "\u200b."))
         blocks.append("\n".join(lines))
-    return "\n\n".join(blocks)
+    return "\n\n\n".join(blocks)  # 덩어리 사이 빈 줄 2개 (제목 뒤는 3개)
 
 
 def post_slack(text: str) -> None:
