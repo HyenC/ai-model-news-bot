@@ -1409,6 +1409,7 @@
    "https://deepmind.google/blog/gemini-robotics-2-5-accelerates-real-world-physical-intelligence/",
    "https://deepmind.google/blog/genie-4-a-new-generation-of-world-simulation/",
    "https://deepmind.google/blog/genie-4-is-now-available/",
+   "https://deepmind.google/blog/interpreting-mass-spectra-with-google-antigravity/",
    "https://deepmind.google/blog/introducing-agentic-video-in-gemini/",
    "https://deepmind.google/blog/introducing-alphaproof-code/",
    "https://deepmind.google/blog/introducing-gemini-3-8-flash-and-38-flash-cyber/",
@@ -1440,6 +1441,7 @@
    "https://elevenlabs.io/blog/enterprise-nyc-summit",
    "https://elevenlabs.io/blog/fix-speech-to-text-accuracy-problems",
    "https://elevenlabs.io/blog/fix-text-to-speech-accuracy-problems",
+   "https://elevenlabs.io/blog/fixing-front-door-government",
    "https://elevenlabs.io/blog/fundacion-televisa-posible",
    "https://elevenlabs.io/blog/how-many-calls-can-an-ai-voice-agent-handle",
    "https://elevenlabs.io/blog/impact-nyc-summit",
@@ -1506,6 +1508,7 @@
    "https://huggingface.co/blog/ibm-research/an-indic-voice-agent-with-cuga",
    "https://huggingface.co/blog/ibm-research/palette-deck-building",
    "https://huggingface.co/blog/ibm-research/time-series-powered-streamhouse",
+   "https://huggingface.co/blog/inkling-2-mini-inference-hillclimb",
    "https://huggingface.co/blog/inkling2mini",
    "https://huggingface.co/blog/microsoft/thinkingbox-training",
    "https://huggingface.co/blog/mistral-large4",
@@ -2173,6 +2176,8 @@
    "google-gemini-3-8-flash-tts",
    "google-gemini-omni-flash-1-1",
    "google-gemini-omni-flash-1-2",
+   "google-lyria-3-clip",
+   "google-lyria-3-pro",
    "google-nano-banana-2",
    "google-nano-banana-2-1",
    "google-nano-banana-2-lite",
@@ -3692,6 +3697,36 @@
    "model_key": "seed-tts-3.0",
    "source": "fal",
    "at": "2026-11-24T19:09:50.989371+00:00"
+  },
+  {
+   "model_key": "lyria-3-pro",
+   "source": "fal",
+   "at": "2026-11-25T18:09:59.813032+00:00"
+  },
+  {
+   "model_key": "lyria-3-pro",
+   "source": "google",
+   "at": "2026-11-25T18:09:59.813032+00:00"
+  },
+  {
+   "model_key": "lyria-3-pro",
+   "source": "replicate",
+   "at": "2026-11-25T18:09:59.813032+00:00"
+  },
+  {
+   "model_key": "lyria-3-pro",
+   "source": "runware",
+   "at": "2026-11-25T18:09:59.813032+00:00"
+  },
+  {
+   "model_key": "lyria-3-clip",
+   "source": "google",
+   "at": "2026-11-25T18:09:59.813032+00:00"
+  },
+  {
+   "model_key": "lyria-3-clip",
+   "source": "runware",
+   "at": "2026-11-25T18:09:59.813032+00:00"
   }
  ],
  "seeded_labels": [

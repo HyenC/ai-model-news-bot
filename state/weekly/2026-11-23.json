@@ -64,5 +64,67 @@
    }
   ],
   "at": "2026-11-24T19:09:51.374239+00:00"
+ },
+ {
+  "kind": "new",
+  "model_key": "lyria-3-pro",
+  "model_name": "Lyria 3 Pro",
+  "maker": "Google",
+  "modality": "오디오",
+  "one_liner": "Google의 음악 생성 모델 Lyria 3 Pro, Runware 첫 공개",
+  "features": [
+   "텍스트→오디오 생성",
+   "이미지→오디오 생성"
+  ],
+  "vs_previous": "",
+  "upcoming": false,
+  "other_availability": "",
+  "event": "Runware에 새로 등록",
+  "date": "",
+  "platforms": {
+   "replicate": "https://replicate.com/google/lyria-3-pro",
+   "runware": "https://runware.ai/models/google-lyria-3-pro",
+   "byteplus": "",
+   "google": "https://ai.google.dev/gemini-api/docs/models",
+   "fal": "https://fal.ai/models/fal-ai/lyria3/pro"
+  },
+  "sources": [
+   {
+    "url": "https://runware.ai/models/google-lyria-3-pro",
+    "title": "lyria 3 pro"
+   }
+  ],
+  "at": "2026-11-25T18:10:00.243542+00:00"
+ },
+ {
+  "kind": "new",
+  "model_key": "lyria-3-clip",
+  "model_name": "Lyria 3 Clip",
+  "maker": "Google",
+  "modality": "오디오",
+  "one_liner": "Google의 음악 생성 모델 Lyria 3 Clip, Runware 첫 공개",
+  "features": [
+   "텍스트→오디오 생성",
+   "이미지→오디오 생성"
+  ],
+  "vs_previous": "",
+  "upcoming": false,
+  "other_availability": "",
+  "event": "Runware에 새로 등록",
+  "date": "",
+  "platforms": {
+   "replicate": "",
+   "runware": "https://runware.ai/models/google-lyria-3-clip",
+   "byteplus": "",
+   "google": "https://ai.google.dev/gemini-api/docs/models",
+   "fal": ""
+  },
+  "sources": [
+   {
+    "url": "https://runware.ai/models/google-lyria-3-clip",
+    "title": "lyria 3 clip"
+   }
+  ],
+  "at": "2026-11-25T18:10:00.737821+00:00"
  }
 ]
