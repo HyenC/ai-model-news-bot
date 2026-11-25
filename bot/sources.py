@@ -296,7 +296,7 @@ def byteplus_info(model_id: str) -> dict:
 GOOGLE_MODELS_MD = "https://aistudio.google.com/docs/models.md"
 GOOGLE_CHANGELOG_MD = "https://aistudio.google.com/docs/changelog.md"
 GOOGLE_MODELS_URL = "https://ai.google.dev/gemini-api/docs/models"
-_GOOGLE_ID = re.compile(r"`((?:gemini|imagen|veo|lyria)[a-z0-9.-]*)`")
+_GOOGLE_ID = re.compile(r"`((?:gemini|imagen|veo|lyria|genie)[a-z0-9.-]*)`")
 # Vertex AI(Gemini Enterprise Agent Platform). Veo 는 여기로만 제공된다. 모델마다 문서 페이지가 있다.
 VERTEX_MODELS_PAGE = "https://docs.cloud.google.com/gemini-enterprise-agent-platform/models/google-models"
 _VERTEX_LINK = re.compile(r'href="(?:https://docs\.cloud\.google\.com)?/gemini-enterprise-agent-platform/models/'
