@@ -1,5 +1,5 @@
 {
- "checked": "2026-11-23",
+ "checked": "2026-11-25",
  "models": {
   "alibaba/happyhorse-1.0": {
    "price": {
@@ -19010,6 +19010,10 @@
     "disable_safety_checker": {
      "type": "boolean",
      "default": false
+    },
+    "enable_copyright_filter": {
+     "type": "boolean",
+     "default": false
     }
    }
   },
@@ -19098,6 +19102,10 @@
     "disable_safety_filter": {
      "type": "boolean",
      "default": true
+    },
+    "enable_copyright_filter": {
+     "type": "boolean",
+     "default": false
     }
    }
   },
@@ -19185,6 +19193,10 @@
     "disable_safety_filter": {
      "type": "boolean",
      "default": true
+    },
+    "enable_copyright_filter": {
+     "type": "boolean",
+     "default": false
     }
    }
   },
@@ -19300,6 +19312,10 @@
     "enable_safety_filter": {
      "type": "boolean",
      "default": false
+    },
+    "enable_copyright_filter": {
+     "type": "boolean",
+     "default": false
     }
    }
   },
@@ -19411,6 +19427,10 @@
      "default": true
     },
     "enable_safety_filter": {
+     "type": "boolean",
+     "default": false
+    },
+    "enable_copyright_filter": {
      "type": "boolean",
      "default": false
     }
@@ -19556,6 +19576,10 @@
     "enable_safety_filter": {
      "type": "boolean",
      "default": false
+    },
+    "enable_copyright_filter": {
+     "type": "boolean",
+     "default": false
     }
    }
   },
@@ -19613,6 +19637,10 @@
     "enable_safety_filter": {
      "type": "boolean",
      "default": true
+    },
+    "enable_copyright_filter": {
+     "type": "boolean",
+     "default": false
     }
    }
   },
@@ -19673,6 +19701,10 @@
      "default": ""
     },
     "disable_safety_checker": {
+     "type": "boolean",
+     "default": false
+    },
+    "enable_copyright_filter": {
      "type": "boolean",
      "default": false
     }
@@ -19781,6 +19813,10 @@
      "type": "boolean",
      "default": true
     },
+    "enable_copyright_filter": {
+     "type": "boolean",
+     "default": false
+    },
     "strength_negative_prompt": {
      "type": "number",
      "default": 0.5,
@@ -19805,7 +19841,8 @@
    "options": {
     "seed": {
      "type": "integer",
-     "minimum": 0
+     "minimum": 0,
+     "maximum": 2147483647
     },
     "draft": {
      "type": "boolean",
@@ -19830,6 +19867,10 @@
      "default": true
     },
     "enable_safety_filter": {
+     "type": "boolean",
+     "default": false
+    },
+    "enable_copyright_filter": {
      "type": "boolean",
      "default": false
     }
@@ -19892,6 +19933,10 @@
      "default": ""
     },
     "disable_safety_checker": {
+     "type": "boolean",
+     "default": false
+    },
+    "enable_copyright_filter": {
      "type": "boolean",
      "default": false
     }
@@ -19984,6 +20029,10 @@
      "default": "1080p"
     },
     "enable_safety_filter": {
+     "type": "boolean",
+     "default": false
+    },
+    "enable_copyright_filter": {
      "type": "boolean",
      "default": false
     }
@@ -20160,6 +20209,10 @@
     "disable_safety_checker": {
      "type": "boolean",
      "default": true
+    },
+    "enable_copyright_filter": {
+     "type": "boolean",
+     "default": false
     }
    }
   },
