@@ -7,6 +7,7 @@ python replicate_watch.py
 
 환경 변수
 - SLACK_WEBHOOK_URL : 데일리 채널 웹훅 (publish.py 와 같음)
+- ALERT_SLACK_WEBHOOK_URL : 관리자 개인 DM 웹훅. 확인을 못 했거나 페이지를 못 읽은 날 하루 한 번 알린다 (alert.py)
 - DRY_RUN=1         : 슬랙에 보내지 않고 화면에만 출력, 기록도 바꾸지 않음
 - FORCE=1           : 시간·날짜 조건 무시하고 지금 확인
 """
@@ -23,6 +24,7 @@ from datetime import datetime
 import requests
 
 from common import KST, ROOT, SERVED_PATH, write_json
+from alert import send_alert
 from publish import DRY_RUN, post_slack
 from sources import fetch_replicate
 
@@ -150,6 +152,9 @@ def main() -> None:
     served = load_served()
     if served is None:
         print("REPLICATE_WATCH=skip (out/served_models.json 없음, 다음 회차에 다시 시도)")
+        send_alert("list_models", "드롭샷 커넥터 `list_models` 호출이 실패해 오늘 Replicate 가격·옵션 확인을 하지 못했습니다.\n"
+                   f"마지막으로 확인한 날: {state.get('checked') or '기록 없음'}\n"
+                   "제공 종료 공지 판단도 목록을 받을 때까지 미뤄집니다. 자세한 오류는 예약 실행 기록에서 볼 수 있습니다.")
         return
 
     try:
@@ -158,10 +163,7 @@ def main() -> None:
         slugs = []
         print(f"[경고] Replicate 공식 모델 목록 읽기 실패: {type(e).__name__}", file=sys.stderr)
     if not slugs:
-        if state.get("warned") != today and not DRY_RUN:
-            post_slack("*[Replicate 감시] 읽기 실패*\nReplicate 공식 모델 목록을 읽지 못해 오늘 가격·옵션 확인을 하지 못했습니다. 다음 회차에 다시 시도합니다.")
-            state["warned"] = today
-            write_json(WATCH_PATH, state)
+        send_alert("replicate_list", "Replicate 공식 모델 목록을 읽지 못해 오늘 가격·옵션 확인을 하지 못했습니다. 다음 회차에 다시 시도합니다.")
         print("REPLICATE_WATCH=fail (공식 모델 목록 읽기 실패)")
         return
     with ThreadPoolExecutor(8) as ex:
@@ -192,10 +194,9 @@ def main() -> None:
                 sent += 1
         state["models"][slug] = merged
 
-    if broken and state.get("warned") != today:
-        post_slack(f"*[Replicate 감시] 읽기 실패*\n우리 서비스 모델 {len(broken)}개의 가격·옵션을 Replicate 페이지에서 읽지 못했습니다. "
+    if broken:
+        send_alert("replicate_pages", f"Replicate 감시: 우리 서비스 모델 {len(broken)}개의 가격·옵션을 Replicate 페이지에서 읽지 못했습니다. "
                    "페이지 구조가 바뀌었을 수 있어 확인이 필요합니다.")
-        state["warned"] = today
     state["checked"] = today
     print(f"REPLICATE_WATCH=done 읽은 모델 {sum(1 for v in results.values() if v)}/{len(slugs)}, "
           f"우리 모델 중 Replicate 에 있는 것 {sum(1 for s in served if s in results)}, 변경 알림 {sent}건, "

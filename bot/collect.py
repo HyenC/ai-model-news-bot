@@ -12,6 +12,7 @@ import sys
 import traceback
 from datetime import datetime, timedelta, timezone
 
+from alert import source_result
 from common import (
     CANDIDATES_PATH, CATALOG_PATH, CATALOG_STATUS_PATH, PENDING_PATH, RETIREMENTS_PATH,
     load_state, save_state, write_json,
@@ -61,7 +62,9 @@ def main() -> None:
         except Exception:
             print(f"[경고] {name} 소스 실패, 이번 회차는 건너뜀", file=sys.stderr)
             traceback.print_exc()
+            source_result(name, False)  # 연속으로 실패하면 관리자 DM
             continue
+        source_result(name, True)
         if name in PLATFORMS:
             catalog_ok[name] = True
             for _, iid, p in items:
