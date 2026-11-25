@@ -121,18 +121,19 @@ def _md(d: str) -> str:
 
 
 def format_digest(week: list[str], digest: dict) -> str:
-    head = [("[테스트] " if TEST else "") + f":announcement: <{digest['page_url']}|Weekly AI News 요약 ({_md(week[0])}~{_md(week[1])})>",
-            "(링크로 들어가시면 조금 더 자세한 설명이 있습니다.)"]
+    head = [("[테스트] " if TEST else "") + f":announcement: *<{digest['page_url']}|Weekly AI News 요약 ({_md(week[0])}~{_md(week[1])})>*",
+            "*(링크로 들어가시면 조금 더 자세한 설명이 있습니다.)*"]
     if MENTION and not TEST:  # 테스트 실행에서는 팀 전체에 알림이 가지 않게 태그하지 않는다
         head.insert(0, f"<!subteam^{MENTION}>")
-    blocks = ["\n".join(head)]
+    blocks = ["\n".join(head) + "\n"]  # 첫 소식 앞에 빈 줄을 하나 더 둔다
     for i, it in enumerate(digest["items"], 1):
-        lines = [f"*{i}. [{it['modality']}] {it['model_name']}* · {it['maker']}", it["summary"].strip()]
+        # 모델 이름에 출처 링크를 건다 (슬랙 링크 글자에 쓸 수 없는 < > | 는 뺀다)
+        name = "".join(c for c in it["model_name"] if c not in "<>|")
+        lines = [f"*{i}. [{it['modality']}] <{it['source_url'].strip()}|{name}>* · {it['maker']}", it["summary"].strip()]
         lines += [f"• {x}" for x in it["features"]]
         if str(it.get("available", "")).strip():
             # 슬랙이 "fal.ai" 같은 글자를 자동 링크로 만들지 않게 점 앞에 폭 없는 공백을 넣는다
             lines.append("제공: " + it["available"].strip().replace(".", "\u200b."))
-        lines.append(f"<{it['source_url'].strip()}|출처>")
         blocks.append("\n".join(lines))
     return "\n\n".join(blocks)
 
