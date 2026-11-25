@@ -7,7 +7,8 @@ python weekly.py send    : out/weekly_digest.json 을 검사해 슬랙으로 전
 환경 변수
 - WEEKLY_SLACK_WEBHOOK_URL : 주간 정리를 보낼 채널의 Incoming Webhook
 - DRY_RUN=1                : 슬랙에 보내지 않고 화면에만 출력, 기록도 바꾸지 않음
-- WEEKLY_TEST=1            : 테스트 실행. 메시지 앞에 [테스트] 를 붙이고, 보낸 주로 기록하지 않음
+- WEEKLY_TEST=1            : 테스트 실행. 메시지 앞에 [테스트] 를 붙이고, 팀 태그를 빼고, 보낸 주로 기록하지 않음
+- WEEKLY_SLACK_MENTION     : 메시지 맨 위에 태그할 슬랙 사용자 그룹 ID (예: S0123ABCD). 없으면 태그 없음
 """
 
 from __future__ import annotations
@@ -31,6 +32,8 @@ MAX_ITEMS = 5
 MODALITIES = {"이미지", "영상", "오디오", "멀티모달"}
 DRY_RUN = os.environ.get("DRY_RUN") == "1"
 TEST = os.environ.get("WEEKLY_TEST") == "1"
+# 메시지 맨 위에 태그할 슬랙 사용자 그룹 ID (S 로 시작). 비어 있으면 태그하지 않는다
+MENTION = os.environ.get("WEEKLY_SLACK_MENTION", "").strip().removeprefix("<!subteam^").rstrip(">").split("|")[0]
 WEEKDAYS = "월화수목금토일"
 
 
@@ -118,8 +121,11 @@ def _md(d: str) -> str:
 
 
 def format_digest(week: list[str], digest: dict) -> str:
-    head = ("[테스트] " if TEST else "") + f"*Weekly AI News* · {_md(week[0])}~{_md(week[1])}"
-    blocks = [head + f"\n지난주 주요 새 모델 {len(digest['items'])}건"]
+    head = [("[테스트] " if TEST else "") + f":announcement: <{digest['page_url']}|Weekly AI News 요약 ({_md(week[0])}~{_md(week[1])})>",
+            "(링크로 들어가시면 조금 더 자세한 설명이 있습니다.)"]
+    if MENTION and not TEST:  # 테스트 실행에서는 팀 전체에 알림이 가지 않게 태그하지 않는다
+        head.insert(0, f"<!subteam^{MENTION}>")
+    blocks = ["\n".join(head)]
     for i, it in enumerate(digest["items"], 1):
         lines = [f"*{i}. [{it['modality']}] {it['model_name']}* · {it['maker']}", it["summary"].strip()]
         lines += [f"• {x}" for x in it["features"]]
@@ -128,7 +134,6 @@ def format_digest(week: list[str], digest: dict) -> str:
             lines.append("제공: " + it["available"].strip().replace(".", "\u200b."))
         lines.append(f"<{it['source_url'].strip()}|출처>")
         blocks.append("\n".join(lines))
-    blocks.append(f"<{digest['page_url']}|Confluence에서 자세히 보기>")
     return "\n\n".join(blocks)
 
 
