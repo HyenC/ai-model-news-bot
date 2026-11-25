@@ -126,5 +126,38 @@
    }
   ],
   "at": "2026-11-25T18:10:00.737821+00:00"
+ },
+ {
+  "kind": "new",
+  "model_key": "rd-flow-64",
+  "model_name": "RD Flow 64",
+  "maker": "Retro Diffusion",
+  "modality": "이미지",
+  "one_liner": "Retro Diffusion의 픽셀아트 특화 소형 이미지 생성 모델",
+  "features": [
+   "텍스트→이미지 생성",
+   "픽셀아트·스프라이트 특화",
+   "게임 에셋 제작용",
+   "Flow matching 기반 소형 모델"
+  ],
+  "vs_previous": "",
+  "upcoming": false,
+  "other_availability": "Hugging Face 가중치(라이선스: other)",
+  "event": "Hugging Face에 공개",
+  "date": "발표일: 2026-11-25(수) · Hugging Face 공개일 기준",
+  "platforms": {
+   "replicate": "",
+   "runware": "",
+   "byteplus": "",
+   "google": "",
+   "fal": ""
+  },
+  "sources": [
+   {
+    "url": "https://huggingface.co/Retro-Diffusion/rd-flow-64",
+    "title": "Retro-Diffusion/rd-flow-64"
+   }
+  ],
+  "at": "2026-11-25T19:10:01.298111+00:00"
  }
 ]

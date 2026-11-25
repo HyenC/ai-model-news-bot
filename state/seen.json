@@ -1307,6 +1307,7 @@
    "PrunaAI/P-H3-Image-Comfy",
    "PrunaAI/P-Q-Image-2.1-Remove-Object",
    "ReDiverse/ReDiverse-MiniMax-H3",
+   "Retro-Diffusion/rd-flow-64",
    "StudioYebisu-ship-it/Drama-3-Japanese-speech-cpp-gguf",
    "TenStrip/MMH3_Sulphur3Eros_Loras-MLP-energy-patches",
    "Viggle/Viggle-Image-Swap",
@@ -1490,6 +1491,7 @@
    "https://huggingface.co/blog/agentic-evals",
    "https://huggingface.co/blog/allenai/robotrack",
    "https://huggingface.co/blog/allenai/toyblocks",
+   "https://huggingface.co/blog/allenai/where-scientists-draw-the-line-on-ai-agents",
    "https://huggingface.co/blog/allenai/xybench",
    "https://huggingface.co/blog/amazon/higher-order-pruning-experts",
    "https://huggingface.co/blog/amazon/profiling-torchneuron-part-1",
@@ -3727,6 +3729,11 @@
    "model_key": "lyria-3-clip",
    "source": "runware",
    "at": "2026-11-25T18:09:59.813032+00:00"
+  },
+  {
+   "model_key": "rd-flow-64",
+   "source": "hf",
+   "at": "2026-11-25T19:10:00.867752+00:00"
   }
  ],
  "seeded_labels": [
