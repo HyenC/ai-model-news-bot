@@ -1330,6 +1330,7 @@
    "inclusionAI/Duo-1.0-distill",
    "inclusionAI/Duo-1.0-distill-quant",
    "inclusionAI/Duo-1.2-causal-base",
+   "inclusionAI/Ming-Image-0.2-Design",
    "kandinskylab/Kandinsky-ImageSR-2.0",
    "kyutai/AURA-1.3B",
    "kyutai/AURA-1.3B-Teacher-TalkVerse",
@@ -1343,6 +1344,7 @@
    "mehdi-hf/cilla-mini",
    "n4ze3m/tiny-voca",
    "owensong/Inflect-Mini-v3",
+   "pocis/Qwen-Image-2.1-PixelHead",
    "sensenova/SenseNova-U1.6-8B-MoT",
    "singam96/ShadeNet-5-35M",
    "supermansundies/Minimax-H3-Image-Pose-Transfer-Lora",
@@ -3752,6 +3754,11 @@
    "model_key": "kandinsky-imagesr-2.0",
    "source": "hf",
    "at": "2026-11-26T04:10:34.532559+00:00"
+  },
+  {
+   "model_key": "ming-image-0.2-design",
+   "source": "hf",
+   "at": "2026-11-26T11:09:59.618484+00:00"
   }
  ],
  "seeded_labels": [

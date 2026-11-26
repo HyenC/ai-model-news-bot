@@ -191,5 +191,38 @@
    }
   ],
   "at": "2026-11-26T04:10:34.971193+00:00"
+ },
+ {
+  "kind": "new",
+  "model_key": "ming-image-0.2-design",
+  "model_name": "Ming-Image 0.2 Design",
+  "maker": "inclusionAI",
+  "modality": "이미지",
+  "one_liner": "그래픽 디자인용 텍스트→이미지 생성 모델",
+  "features": [
+   "텍스트→이미지 생성",
+   "그래픽 디자인 특화",
+   "이미지 내 텍스트 렌더링",
+   "RGBA(투명 배경) 출력"
+  ],
+  "vs_previous": "",
+  "upcoming": false,
+  "other_availability": "Hugging Face 오픈 가중치(라이선스: mit)",
+  "event": "Hugging Face에 공개",
+  "date": "발표일: 2026-11-25(수) · Hugging Face 공개일 기준",
+  "platforms": {
+   "replicate": "",
+   "runware": "",
+   "byteplus": "",
+   "google": "",
+   "fal": ""
+  },
+  "sources": [
+   {
+    "url": "https://huggingface.co/inclusionAI/Ming-Image-0.2-Design",
+    "title": "inclusionAI/Ming-Image-0.2-Design"
+   }
+  ],
+  "at": "2026-11-26T11:10:00.057098+00:00"
  }
 ]
