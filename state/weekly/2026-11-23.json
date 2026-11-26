@@ -224,5 +224,37 @@
    }
   ],
   "at": "2026-11-26T11:10:00.057098+00:00"
+ },
+ {
+  "kind": "new",
+  "model_key": "p-video-2-pro-lipsync",
+  "model_name": "P-Video 2 Pro Lipsync",
+  "maker": "Pruna AI",
+  "modality": "영상",
+  "one_liner": "P-Video 2 Pro 기반 영상 립싱크 모델",
+  "features": [
+   "영상+오디오 입력 립싱크",
+   "video-to-video, audio-to-video",
+   "Runware 시작가 $0.05"
+  ],
+  "vs_previous": "",
+  "upcoming": false,
+  "other_availability": "",
+  "event": "Runware에 새로 등록",
+  "date": "발표일: 2026-11-26(목) · Runware 출시일 기준",
+  "platforms": {
+   "replicate": "",
+   "runware": "https://runware.ai/models/prunaai-p-video-2-pro-lipsync",
+   "byteplus": "",
+   "google": "",
+   "fal": ""
+  },
+  "sources": [
+   {
+    "url": "https://runware.ai/models/prunaai-p-video-2-pro-lipsync",
+    "title": "p-video-2-pro-lipsync"
+   }
+  ],
+  "at": "2026-11-26T17:10:00.178778+00:00"
  }
 ]

@@ -2316,6 +2316,7 @@
    "prunaai-p-video-2",
    "prunaai-p-video-2-pro",
    "prunaai-p-video-2-pro-avatar",
+   "prunaai-p-video-2-pro-lipsync",
    "prunaai-p-video-2-pro-replace",
    "prunaai-p-video-animate",
    "prunaai-p-video-avatar",
@@ -3762,6 +3763,11 @@
    "model_key": "ming-image-0.2-design",
    "source": "hf",
    "at": "2026-11-26T11:09:59.618484+00:00"
+  },
+  {
+   "model_key": "p-video-2-pro-lipsync",
+   "source": "runware",
+   "at": "2026-11-26T17:09:59.718489+00:00"
   }
  ],
  "seeded_labels": [
