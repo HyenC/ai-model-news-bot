@@ -26,7 +26,7 @@ FAL_CATEGORIES = {
 }
 HF_TAGS = [
     "text-to-image", "image-to-image", "text-to-video", "image-to-video",
-    "text-to-speech", "text-to-audio", "any-to-any",
+    "text-to-speech", "text-to-audio", "any-to-any", "image-text-to-video",
 ]
 # Hugging Face 에 새로 올라오는 모델은 대부분 개인 파인튜닝·경량화 버전이라,
 # 주요 기관이 올린 것만 바로 후보로 삼는다. (그 외는 급상승 목록에서 잡는다)
@@ -41,6 +41,7 @@ HF_ORGS = {o.lower() for o in [
     "inclusionAI", "deepseek-ai", "moonshotai", "IndexTeam", "FunAudioLLM",
     "MeiGen-AI", "decart-ai", "lodestones", "OpenGVLab", "rhymes-ai",
     "Alibaba-NLP", "alibaba-pai", "Shitao", "VectorSpaceLab", "AIDC-AI",
+    "sand-ai",
 ]}
 HF_TRENDING_MIN_LIKES = 30
 HF_TRENDING_MAX_AGE_DAYS = 21
@@ -68,6 +69,8 @@ BLOG_PAGES = {
     "Lightricks (LTX)": ("https://ltx.io/blog", "/blog/"),
     "Suno": ("https://suno.com/blog", "/blog/"),
     "BytePlus 블로그": ("https://www.byteplus.com/en/blog", "/blog/"),
+    # Sand AI(MAGI)는 블로그 목록 페이지가 없고 연구 페이지에 글 링크가 모인다
+    "Sand AI (MAGI)": ("https://sand.ai/research", "/blog/"),
 }
 
 # 모델 제공 종료(deprecation)를 미리 공지하는 페이지.
