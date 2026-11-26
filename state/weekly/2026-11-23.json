@@ -159,5 +159,37 @@
    }
   ],
   "at": "2026-11-25T19:10:01.298111+00:00"
+ },
+ {
+  "kind": "new",
+  "model_key": "kandinsky-imagesr-2.0",
+  "model_name": "Kandinsky ImageSR 2.0",
+  "maker": "Kandinsky Lab",
+  "modality": "이미지",
+  "one_liner": "Kandinsky Lab의 이미지 초해상도(업스케일) 모델",
+  "features": [
+   "이미지→이미지 초해상도",
+   "diffusers 파이프라인 지원",
+   "safetensors 오픈 가중치"
+  ],
+  "vs_previous": "",
+  "upcoming": false,
+  "other_availability": "Hugging Face 오픈 가중치(라이선스: mit)",
+  "event": "Hugging Face에 공개",
+  "date": "발표일: 2026-11-24(화) · Hugging Face 공개일 기준",
+  "platforms": {
+   "replicate": "",
+   "runware": "",
+   "byteplus": "",
+   "google": "",
+   "fal": ""
+  },
+  "sources": [
+   {
+    "url": "https://huggingface.co/kandinskylab/Kandinsky-ImageSR-2.0",
+    "title": "kandinskylab/Kandinsky-ImageSR-2.0"
+   }
+  ],
+  "at": "2026-11-26T04:10:34.971193+00:00"
  }
 ]

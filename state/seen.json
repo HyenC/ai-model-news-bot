@@ -1327,6 +1327,7 @@
    "inclusionAI/Duo-1.0-distill",
    "inclusionAI/Duo-1.0-distill-quant",
    "inclusionAI/Duo-1.2-causal-base",
+   "kandinskylab/Kandinsky-ImageSR-2.0",
    "kyutai/AURA-1.3B",
    "kyutai/AURA-1.3B-Teacher-TalkVerse",
    "kyutai/AURA-5B",
@@ -3737,6 +3738,11 @@
    "model_key": "rd-flow-64",
    "source": "hf",
    "at": "2026-11-25T19:10:00.867752+00:00"
+  },
+  {
+   "model_key": "kandinsky-imagesr-2.0",
+   "source": "hf",
+   "at": "2026-11-26T04:10:34.532559+00:00"
   }
  ],
  "seeded_labels": [
