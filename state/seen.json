@@ -3055,6 +3055,11 @@
    "https://www.recraft.ai/blog/youtube-banner-size"
   ],
   "fal_retire": [
+   "decart/lucy-2-5/realtime@2026-12-27",
+   "decart/lucy-2-6/realtime@2026-12-27",
+   "decart/lucy-restyle@2026-12-27",
+   "decart/lucy2-vton/realtime@2026-12-27",
+   "fal-ai/decart/lucy-5b/image-to-video@2026-12-27",
    "fal-ai/elevenlabs/sound-effects/v2@2027-02-01",
    "fal-ai/glm-image/image-to-image@2026-12-10",
    "fal-ai/glm-image@2026-12-10",
